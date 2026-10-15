@@ -1,0 +1,36 @@
+```mermaid
+graph TD
+    User([Patient / Medical Student])
+
+    subgraph Level_0_Context [Level 0 / 1 DFD: MediLogic Diagnostic Process]
+        P1[1.0 Symptom Intake & Truth State Capture]
+        P2[2.0 Independent Red Flag Triage]
+        P3[3.0 Data-Driven Forward Inference]
+        P4[4.0 Goal-Directed Backward Proof]
+        P5[5.0 Explanation & Proof Tree Assembly]
+    end
+
+    DS1[("D1: Working Facts Store")]
+    DS2[("D2: Declarative Knowledge Base")]
+    DS3[("D3: Audit Execution Trace Store")]
+
+    User -- "Symptom Status (Present/Absent/Unknown)" --> P1
+    P1 -- "Validated Tri-State Facts" --> DS1
+
+    DS1 -- "Active Facts" --> P2
+    P2 -- "Emergency Alerts" --> User
+
+    DS1 -- "Initial Facts" --> P3
+    DS2 -- "Production Rules & Antecedents" --> P3
+    P3 -- "Derived Facts" --> DS1
+    P3 -- "Forward Firing Steps" --> DS3
+
+    User -- "Selected Target Hypothesis" --> P4
+    DS1 -- "Current Facts" --> P4
+    DS2 -- "Candidate Rules & Dependencies" --> P4
+    P4 -- "Proof Subgoals & Outcomes" --> DS3
+
+    DS3 -- "Inference Logs & Proof Trees" --> P5
+    DS2 -- "Rule Rationale & Sources" --> P5
+    P5 -- "Transparent Clinical Narrative & Proof Tree" --> User
+```

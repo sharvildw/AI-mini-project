@@ -1,0 +1,58 @@
+{
+  "REF_WHO_ILI": {
+    "id": "REF_WHO_ILI",
+    "title": "WHO Global Influenza Surveillance and Response System (GISRS) Case Definitions for ILI",
+    "organization": "World Health Organization (WHO)",
+    "year": 2018,
+    "description": "Standardized clinical case definition for influenza-like illness (ILI): acute respiratory infection with measured fever of >= 38 C and cough, with onset within the last 10 days.",
+    "url": "https://www.who.int/teams/global-influenza-programme/surveillance-and-monitoring"
+  },
+  "REF_CDC_COLD": {
+    "id": "REF_CDC_COLD",
+    "title": "Common Colds: Protect Yourself and Others",
+    "organization": "Centers for Disease Control and Prevention (CDC)",
+    "year": 2023,
+    "description": "Clinical overview of viral upper respiratory tract infections highlighting nasal congestion, rhinorrhea, sore throat, and mild cough typically in the absence of high fever.",
+    "url": "https://www.cdc.gov/antibiotic-use/common-cold.html"
+  },
+  "REF_AAAI_ALLERGY": {
+    "id": "REF_AAAI_ALLERGY",
+    "title": "Allergic Rhinitis Practice Parameters",
+    "organization": "American Academy of Allergy, Asthma & Immunology (AAAAI)",
+    "year": 2020,
+    "description": "Diagnostic indicators for allergic rhinitis: paroxysmal sneezing, clear rhinorrhea, nasal itching, itchy/watery eyes, absence of fever or infectious prodrome.",
+    "url": "https://www.aaaai.org/conditions-treatments/allergies/allergic-rhinitis"
+  },
+  "REF_IHS_MIGRAINE": {
+    "id": "REF_IHS_MIGRAINE",
+    "title": "International Classification of Headache Disorders (ICHD-3)",
+    "organization": "International Headache Society (IHS)",
+    "year": 2018,
+    "description": "Diagnostic criteria for migraine without aura: recurrent headache disorder manifesting in attacks lasting 4-72 hours, typically unilateral, pulsating, moderate or severe, aggravated by physical activity, accompanied by nausea/vomiting and/or photophobia and phonophobia.",
+    "url": "https://ichd-3.org/1-migraine/"
+  },
+  "REF_ACG_GASTRO": {
+    "id": "REF_ACG_GASTRO",
+    "title": "Clinical Guideline: Diagnosis, Treatment, and Prevention of Acute Diarrheal Infections in Adults",
+    "organization": "American College of Gastroenterology (ACG)",
+    "year": 2016,
+    "description": "Clinical pattern of acute infectious gastroenteritis presenting with acute onset of diarrhea, nausea, vomiting, abdominal cramping.",
+    "url": "https://gi.org/guidelines/clinical-guideline-acute-diarrheal-infections-in-adults/"
+  },
+  "REF_EAU_UTI": {
+    "id": "REF_EAU_UTI",
+    "title": "EAU Guidelines on Urological Infections",
+    "organization": "European Association of Urology (EAU)",
+    "year": 2022,
+    "description": "Clinical presentation of uncomplicated lower urinary tract infection (cystitis): dysuria, urinary frequency, urinary urgency, suprapubic tenderness in the absence of vaginal symptoms or systemic fever.",
+    "url": "https://uroweb.org/guidelines/urological-infections"
+  },
+  "REF_EMERGENCY_RED_FLAGS": {
+    "id": "REF_EMERGENCY_RED_FLAGS",
+    "title": "Emergency Medicine Clinical Practice Guidelines: Red Flag Symptom Recognition",
+    "organization": "American College of Emergency Physicians (ACEP)",
+    "year": 2021,
+    "description": "Clinical triage indicators representing immediate potential threats to life or limb requiring urgent emergency medical evaluation.",
+    "url": "https://www.acep.org/"
+  }
+}

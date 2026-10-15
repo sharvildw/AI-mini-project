@@ -1,0 +1,40 @@
+```mermaid
+flowchart TD
+    Start([Start Forward Chaining]) --> InitMemory[Initialize Working Memory with User Facts]
+    InitMemory --> LoadKB[Load Validated Knowledge Base Rules]
+    LoadKB --> SetIter[Set Iteration = 1, NewFactsInIteration = 0]
+
+    SetIter --> CheckLimit{Iteration > MaxIterations?}
+    CheckLimit -- Yes --> HaltLimit[Halt: Execution Safety Limit Exceeded]
+    CheckLimit -- No --> LoopRules[Iterate over Rules R in RuleBase]
+
+    LoopRules --> AlreadyFired{Rule R Already Fired?}
+    AlreadyFired -- Yes --> NextRule[Next Rule]
+    AlreadyFired -- No --> EvalAntecedent[Evaluate Antecedent of R using Kleene K3 Logic]
+
+    EvalAntecedent --> IsTrue{Antecedent == TRUE?}
+    IsTrue -- No --> RecordAudit[Record Non-Firing Step in Audit Trace]
+    RecordAudit --> NextRule
+
+    IsTrue -- Yes --> ApplyModusPonens[Apply Modus Ponens: Fire Rule R]
+    ApplyModusPonens --> CheckExisting{Consequent Fact already in Memory?}
+    CheckExisting -- Yes --> MarkFired[Mark Rule R as Fired]
+    CheckExisting -- No --> AddFact[Add Consequent to Working Memory as INFERRED]
+    AddFact --> IncrementFacts[NewFactsInIteration++]
+    IncrementFacts --> MarkFired
+
+    MarkFired --> RecordStep[Record Fired Step in Trace]
+    RecordStep --> NextRule
+
+    NextRule --> MoreRules{More Rules in current Iteration?}
+    MoreRules -- Yes --> LoopRules
+    MoreRules -- No --> CheckNewFacts{NewFactsInIteration == 0?}
+
+    CheckNewFacts -- Yes --> FixedPoint[Fixed-Point Reached: Saturation]
+    CheckNewFacts -- No --> NextIteration[Iteration++, Reset NewFactsInIteration = 0]
+    NextIteration --> CheckLimit
+
+    FixedPoint --> ExtractHypotheses[Extract Final Supported Condition Hypotheses]
+    HaltLimit --> ExtractHypotheses
+    ExtractHypotheses --> ReturnResult([Return ForwardChainingResult & Trace])
+```

@@ -1,0 +1,430 @@
+[
+  {
+    "id": "R001",
+    "name": "Acute Febrile Respiratory Syndrome Derivation",
+    "category": "Respiratory",
+    "readable_text": "IF fever_present AND cough_present AND fatigue_present THEN acute_febrile_respiratory_syndrome_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "fever_present", "value": "TRUE"},
+        {"fact": "cough_present", "value": "TRUE"},
+        {"fact": "fatigue_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "acute_febrile_respiratory_syndrome_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Fever, cough, and systemic fatigue together establish an acute febrile respiratory syndromic presentation.",
+    "source": "REF_WHO_ILI"
+  },
+  {
+    "id": "R002",
+    "name": "Influenza-Like Illness from Febrile Syndrome and Myalgia",
+    "category": "Respiratory",
+    "readable_text": "IF acute_febrile_respiratory_syndrome_supported AND body_aches_present THEN influenza_like_illness_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "acute_febrile_respiratory_syndrome_supported", "value": "TRUE"},
+        {"fact": "body_aches_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "influenza_like_illness_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Acute febrile respiratory syndrome combined with prominent body aches (myalgia) satisfies the core clinical case definition for an influenza-like illness pattern.",
+    "source": "REF_WHO_ILI"
+  },
+  {
+    "id": "R003",
+    "name": "Severe Influenza-Like Illness Escalation",
+    "category": "Respiratory",
+    "readable_text": "IF influenza_like_illness_supported AND high_fever_present AND chills_present THEN severe_influenza_like_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "influenza_like_illness_supported", "value": "TRUE"},
+        {"fact": "high_fever_present", "value": "TRUE"},
+        {"fact": "chills_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "severe_influenza_like_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "An established influenza-like illness presentation accompanied by high fever (>= 39 C) and shaking chills indicates a high constitutional burden.",
+    "source": "REF_WHO_ILI"
+  },
+  {
+    "id": "R004",
+    "name": "Influenza-Like Illness via Rapid Onset and Shivering/Aches",
+    "category": "Respiratory",
+    "readable_text": "IF acute_febrile_respiratory_syndrome_supported AND rapid_onset_present AND (chills_present OR body_aches_present) THEN influenza_like_illness_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "acute_febrile_respiratory_syndrome_supported", "value": "TRUE"},
+        {"fact": "rapid_onset_present", "value": "TRUE"},
+        {
+          "or": [
+            {"fact": "chills_present", "value": "TRUE"},
+            {"fact": "body_aches_present", "value": "TRUE"}
+          ]
+        }
+      ]
+    },
+    "consequent": {
+      "fact": "influenza_like_illness_supported",
+      "value": "TRUE"
+    },
+    "explanation": "An abrupt symptom onset combined with febrile respiratory features and either chills or body aches provides strong alternative support for influenza-like illness.",
+    "source": "REF_WHO_ILI"
+  },
+  {
+    "id": "R005",
+    "name": "Nasopharyngeal Catarrhal Cluster Derivation",
+    "category": "Respiratory",
+    "readable_text": "IF nasal_congestion_present AND sore_throat_present THEN nasopharyngeal_catarrh_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "nasal_congestion_present", "value": "TRUE"},
+        {"fact": "sore_throat_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "nasopharyngeal_catarrh_supported",
+      "value": "TRUE"
+    },
+    "explanation": "The co-occurrence of nasal congestion and sore throat establishes mucosal inflammation of the upper nasopharyngeal tract.",
+    "source": "REF_CDC_COLD"
+  },
+  {
+    "id": "R006",
+    "name": "Common Cold Pattern from Catarrh and Airway Reflexes",
+    "category": "Respiratory",
+    "readable_text": "IF nasopharyngeal_catarrh_supported AND (cough_present OR sneezing_present) THEN common_cold_like_illness_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "nasopharyngeal_catarrh_supported", "value": "TRUE"},
+        {
+          "or": [
+            {"fact": "cough_present", "value": "TRUE"},
+            {"fact": "sneezing_present", "value": "TRUE"}
+          ]
+        }
+      ]
+    },
+    "consequent": {
+      "fact": "common_cold_like_illness_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Nasopharyngeal mucosal inflammation coupled with airway clearing reflexes (cough or sneezing) supports a common cold pattern.",
+    "source": "REF_CDC_COLD"
+  },
+  {
+    "id": "R007",
+    "name": "Common Cold Pattern via Rhinorrhea and Sore Throat",
+    "category": "Respiratory",
+    "readable_text": "IF sore_throat_present AND clear_rhinorrhea_present AND fatigue_present THEN common_cold_like_illness_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "sore_throat_present", "value": "TRUE"},
+        {"fact": "clear_rhinorrhea_present", "value": "TRUE"},
+        {"fact": "fatigue_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "common_cold_like_illness_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Mild upper respiratory triad of pharyngeal pain, clear nasal discharge, and mild fatigue supports a self-limiting viral common cold pattern.",
+    "source": "REF_CDC_COLD"
+  },
+  {
+    "id": "R008",
+    "name": "Allergic Rhinopathy Cluster Derivation",
+    "category": "Immunology & Allergy",
+    "readable_text": "IF sneezing_present AND clear_rhinorrhea_present THEN allergic_rhinopathy_cluster_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "sneezing_present", "value": "TRUE"},
+        {"fact": "clear_rhinorrhea_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "allergic_rhinopathy_cluster_supported",
+      "value": "TRUE"
+    },
+    "explanation": "The co-occurrence of paroxysmal sneezing and thin watery rhinorrhea suggests hyperreactive nasal mucosal discharge.",
+    "source": "REF_AAAI_ALLERGY"
+  },
+  {
+    "id": "R009",
+    "name": "Allergic Rhinitis Pattern from Rhinopathy and Pruritus",
+    "category": "Immunology & Allergy",
+    "readable_text": "IF allergic_rhinopathy_cluster_supported AND (itchy_eyes_present OR itchy_nose_or_palate_present) THEN allergic_rhinitis_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "allergic_rhinopathy_cluster_supported", "value": "TRUE"},
+        {
+          "or": [
+            {"fact": "itchy_eyes_present", "value": "TRUE"},
+            {"fact": "itchy_nose_or_palate_present", "value": "TRUE"}
+          ]
+        }
+      ]
+    },
+    "consequent": {
+      "fact": "allergic_rhinitis_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Nasal discharge accompanied by pruritus of the eyes or palate strongly indicates an IgE-mediated allergic rhinitis pattern.",
+    "source": "REF_AAAI_ALLERGY"
+  },
+  {
+    "id": "R010",
+    "name": "Allergic Rhinitis Pattern via Documented Trigger",
+    "category": "Immunology & Allergy",
+    "readable_text": "IF allergen_exposure_trigger_present AND (clear_rhinorrhea_present OR sneezing_present) AND itchy_eyes_present THEN allergic_rhinitis_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "allergen_exposure_trigger_present", "value": "TRUE"},
+        {
+          "or": [
+            {"fact": "clear_rhinorrhea_present", "value": "TRUE"},
+            {"fact": "sneezing_present", "value": "TRUE"}
+          ]
+        },
+        {"fact": "itchy_eyes_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "allergic_rhinitis_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Symptom exacerbation following known allergen exposure with ocular pruritus and nasal symptoms establishes allergic rhinitis.",
+    "source": "REF_AAAI_ALLERGY"
+  },
+  {
+    "id": "R011",
+    "name": "Vascular Migrainous Pain Pattern Derivation",
+    "category": "Neurology",
+    "readable_text": "IF headache_present AND unilateral_throbbing_headache_present THEN vascular_migrainous_pain_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "headache_present", "value": "TRUE"},
+        {"fact": "unilateral_throbbing_headache_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "vascular_migrainous_pain_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Unilateral pulsating headache quality satisfies primary pain morphology for migrainous neurovascular cephalalgia.",
+    "source": "REF_IHS_MIGRAINE"
+  },
+  {
+    "id": "R012",
+    "name": "Migraine Pattern from Pain and Sensory/Autonomic Features",
+    "category": "Neurology",
+    "readable_text": "IF vascular_migrainous_pain_pattern_supported AND (photophobia_present OR phonophobia_present OR nausea_present) THEN migraine_like_headache_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "vascular_migrainous_pain_pattern_supported", "value": "TRUE"},
+        {
+          "or": [
+            {"fact": "photophobia_present", "value": "TRUE"},
+            {"fact": "phonophobia_present", "value": "TRUE"},
+            {"fact": "nausea_present", "value": "TRUE"}
+          ]
+        }
+      ]
+    },
+    "consequent": {
+      "fact": "migraine_like_headache_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Pulsating unilateral pain combined with light/sound sensitivity or nausea meets core clinical criteria for migraine-like headache.",
+    "source": "REF_IHS_MIGRAINE"
+  },
+  {
+    "id": "R013",
+    "name": "Migraine Pattern with Visual Aura",
+    "category": "Neurology",
+    "readable_text": "IF unilateral_throbbing_headache_present AND visual_aura_present THEN migraine_like_headache_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "unilateral_throbbing_headache_present", "value": "TRUE"},
+        {"fact": "visual_aura_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "migraine_like_headache_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "A pulsating unilateral headache preceded or accompanied by visual aura pathognomonically supports migraine with aura.",
+    "source": "REF_IHS_MIGRAINE"
+  },
+  {
+    "id": "R014",
+    "name": "Migraine Pattern Aggravated by Activity",
+    "category": "Neurology",
+    "readable_text": "IF vascular_migrainous_pain_pattern_supported AND worsened_by_routine_activity_present AND (nausea_present OR photophobia_present) THEN migraine_like_headache_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "vascular_migrainous_pain_pattern_supported", "value": "TRUE"},
+        {"fact": "worsened_by_routine_activity_present", "value": "TRUE"},
+        {
+          "or": [
+            {"fact": "nausea_present", "value": "TRUE"},
+            {"fact": "photophobia_present", "value": "TRUE"}
+          ]
+        }
+      ]
+    },
+    "consequent": {
+      "fact": "migraine_like_headache_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Aggravation by routine physical activity combined with autonomic/photophobic features supports migraine diagnosis.",
+    "source": "REF_IHS_MIGRAINE"
+  },
+  {
+    "id": "R015",
+    "name": "Acute Enteric Irritation Derivation",
+    "category": "Gastroenterology",
+    "readable_text": "IF watery_diarrhea_present AND nausea_present THEN acute_enteric_irritation_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "watery_diarrhea_present", "value": "TRUE"},
+        {"fact": "nausea_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "acute_enteric_irritation_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Concurrent watery diarrhea and nausea demonstrate acute mucosal irritation of the gastrointestinal tract.",
+    "source": "REF_ACG_GASTRO"
+  },
+  {
+    "id": "R016",
+    "name": "Gastroenteritis Pattern from Enteric Irritation and Vomiting/Cramps",
+    "category": "Gastroenterology",
+    "readable_text": "IF acute_enteric_irritation_supported AND (vomiting_present OR abdominal_cramps_present) THEN acute_gastroenteritis_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "acute_enteric_irritation_supported", "value": "TRUE"},
+        {
+          "or": [
+            {"fact": "vomiting_present", "value": "TRUE"},
+            {"fact": "abdominal_cramps_present", "value": "TRUE"}
+          ]
+        }
+      ]
+    },
+    "consequent": {
+      "fact": "acute_gastroenteritis_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Enteric irritation coupled with emesis or colicky abdominal spasms supports an acute gastroenteritis pattern.",
+    "source": "REF_ACG_GASTRO"
+  },
+  {
+    "id": "R017",
+    "name": "Gastroenteritis Pattern via Emesis, Cramps and Fever",
+    "category": "Gastroenterology",
+    "readable_text": "IF vomiting_present AND abdominal_cramps_present AND fever_present THEN acute_gastroenteritis_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "vomiting_present", "value": "TRUE"},
+        {"fact": "abdominal_cramps_present", "value": "TRUE"},
+        {"fact": "fever_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "acute_gastroenteritis_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Febrile presentation accompanied by prominent vomiting and abdominal cramps supports infectious gastroenteritis.",
+    "source": "REF_ACG_GASTRO"
+  },
+  {
+    "id": "R018",
+    "name": "Lower Urinary Irritation Cluster Derivation",
+    "category": "Urology",
+    "readable_text": "IF dysuria_present AND urinary_frequency_present THEN lower_urinary_irritation_cluster_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "dysuria_present", "value": "TRUE"},
+        {"fact": "urinary_frequency_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "lower_urinary_irritation_cluster_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Dysuria occurring together with urinary frequency establishes bladder and urethral mucosal irritative syndrome.",
+    "source": "REF_EAU_UTI"
+  },
+  {
+    "id": "R019",
+    "name": "Lower Urinary Tract Infection (Cystitis) Pattern",
+    "category": "Urology",
+    "readable_text": "IF lower_urinary_irritation_cluster_supported AND (urinary_urgency_present OR suprapubic_tenderness_present) THEN lower_urinary_tract_infection_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "lower_urinary_irritation_cluster_supported", "value": "TRUE"},
+        {
+          "or": [
+            {"fact": "urinary_urgency_present", "value": "TRUE"},
+            {"fact": "suprapubic_tenderness_present", "value": "TRUE"}
+          ]
+        }
+      ]
+    },
+    "consequent": {
+      "fact": "lower_urinary_tract_infection_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Lower urinary irritative cluster plus urgency or suprapubic ache supports uncomplicated cystitis (lower UTI).",
+    "source": "REF_EAU_UTI"
+  },
+  {
+    "id": "R020",
+    "name": "Complicated Upper UTI / Pyelonephritis Escalation",
+    "category": "Urology",
+    "readable_text": "IF lower_urinary_tract_infection_pattern_supported AND flank_pain_present AND fever_present THEN complicated_upper_uti_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "lower_urinary_tract_infection_pattern_supported", "value": "TRUE"},
+        {"fact": "flank_pain_present", "value": "TRUE"},
+        {"fact": "fever_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "complicated_upper_uti_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Lower urinary tract signs progressing to costovertebral flank pain and systemic fever indicates ascending upper urinary tract infection.",
+    "source": "REF_EAU_UTI"
+  },
+  {
+    "id": "R021",
+    "name": "Upper UTI Pattern via Direct Flank Pain, Dysuria, and High Fever",
+    "category": "Urology",
+    "readable_text": "IF dysuria_present AND flank_pain_present AND high_fever_present THEN complicated_upper_uti_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "dysuria_present", "value": "TRUE"},
+        {"fact": "flank_pain_present", "value": "TRUE"},
+        {"fact": "high_fever_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "complicated_upper_uti_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Direct co-manifestation of painful urination, unilateral flank pain, and high fever supports suspected acute pyelonephritis.",
+    "source": "REF_EAU_UTI"
+  }
+]

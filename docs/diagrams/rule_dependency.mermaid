@@ -1,0 +1,58 @@
+```mermaid
+graph TD
+    subgraph Primary_Respiratory_Cluster [Influenza-Like & Upper Respiratory Chain]
+        Fever[fever_present] --> R001[R001: Febrile Cluster]
+        Cough[cough_present] --> R001
+        Fatigue[fatigue_present] --> R001
+        R001 --> FebSyndrome[acute_febrile_respiratory_syndrome]
+
+        FebSyndrome --> R002[R002: ILI Core]
+        BodyAches[body_aches_present] --> R002
+        R002 --> ILI[influenza_like_illness_supported]
+
+        ILI --> R003[R003: Severe ILI]
+        HighFever[high_fever_present] --> R003
+        Chills[chills_present] --> R003
+        R003 --> SevereILI[severe_influenza_like_pattern_supported]
+
+        FebSyndrome --> R004[R004: Rapid Onset ILI]
+        RapidOnset[rapid_onset_present] --> R004
+        Chills --> R004
+        R004 --> ILI
+    end
+
+    subgraph Catarrh_Cold_Cluster [Common Cold Chain]
+        NasalCong[nasal_congestion_present] --> R005[R005: Catarrh Cluster]
+        SoreThroat[sore_throat_present] --> R005
+        R005 --> Catarrh[nasopharyngeal_catarrh_supported]
+
+        Catarrh --> R006[R006: Cold Pattern]
+        Cough --> R006
+        R006 --> Cold[common_cold_like_illness_supported]
+    end
+
+    subgraph Allergy_Cluster [Allergic Rhinitis Chain]
+        Sneezing[sneezing_present] --> R008[R008: Rhinopathy]
+        ClearRhin[clear_rhinorrhea_present] --> R008
+        R008 --> Rhinopathy[allergic_rhinopathy_cluster]
+
+        Rhinopathy --> R009[R009: Rhinitis Pattern]
+        ItchyEyes[itchy_eyes_present] --> R009
+        R009 --> Allergy[allergic_rhinitis_pattern_supported]
+    end
+
+    subgraph Urology_Cluster [Lower & Upper UTI Chain]
+        Dysuria[dysuria_present] --> R018[R018: Irritative Voiding]
+        Frequency[urinary_frequency_present] --> R018
+        R018 --> LowerCluster[lower_urinary_irritation_cluster]
+
+        LowerCluster --> R019[R019: Cystitis]
+        Urgency[urinary_urgency_present] --> R019
+        R019 --> LowerUTI[lower_urinary_tract_infection_supported]
+
+        LowerUTI --> R020[R020: Pyelonephritis]
+        FlankPain[flank_pain_present] --> R020
+        Fever --> R020
+        R020 --> UpperUTI[complicated_upper_uti_pattern_supported]
+    end
+```

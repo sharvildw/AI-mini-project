@@ -1,0 +1,148 @@
+[
+  {
+    "id": "influenza_like_illness_supported",
+    "name": "Influenza-Like Illness (ILI) Pattern",
+    "category": "Respiratory",
+    "description": "An acute respiratory infection constellation characterized by fever, cough, and generalized constitutional symptoms such as myalgia, fatigue, and rapid onset.",
+    "clinical_features": [
+      "Fever >= 38 C",
+      "Cough",
+      "Generalized body aches (myalgias)",
+      "Systemic fatigue / malaise",
+      "Abrupt symptom onset"
+    ],
+    "differential_considerations": [
+      "Common Cold (usually lacks high fever and severe myalgias)",
+      "COVID-19",
+      "Acute Bronchitis",
+      "Bacterial Pneumonia"
+    ],
+    "primary_reference": "REF_WHO_ILI"
+  },
+  {
+    "id": "common_cold_like_illness_supported",
+    "name": "Acute Viral Upper Respiratory Infection (Common Cold) Pattern",
+    "category": "Respiratory",
+    "description": "A mild, self-limited viral infection of the upper respiratory tract primarily manifesting as nasal congestion, sore throat, sneezing, and low-grade or absent fever.",
+    "clinical_features": [
+      "Nasal congestion or rhinorrhea",
+      "Sore throat / pharyngeal irritation",
+      "Mild cough",
+      "Absence of high fever"
+    ],
+    "differential_considerations": [
+      "Influenza (more severe systemic symptoms)",
+      "Allergic Rhinitis (pruritus predominant, non-infectious)",
+      "Streptococcal Pharyngitis (severe sore throat, exudates, high fever)"
+    ],
+    "primary_reference": "REF_CDC_COLD"
+  },
+  {
+    "id": "allergic_rhinitis_pattern_supported",
+    "name": "Allergic Rhinitis Pattern",
+    "category": "Immunology & Allergy",
+    "description": "An IgE-mediated inflammatory response of the nasal mucosa triggered by allergen exposure, characterized by sneezing, clear rhinorrhea, and ocular/nasal pruritus without fever.",
+    "clinical_features": [
+      "Paroxysmal sneezing",
+      "Clear, watery rhinorrhea",
+      "Itchy, watery eyes (allergic conjunctivitis)",
+      "Itchy palate or nose",
+      "Absence of fever"
+    ],
+    "differential_considerations": [
+      "Vasomotor Rhinitis",
+      "Early Viral Upper Respiratory Tract Infection",
+      "Non-Allergic Rhinitis with Eosinophilia (NARES)"
+    ],
+    "primary_reference": "REF_AAAI_ALLERGY"
+  },
+  {
+    "id": "migraine_like_headache_pattern_supported",
+    "name": "Migraine-Type Headache Pattern",
+    "category": "Neurology",
+    "description": "A neurovascular primary headache disorder marked by recurrent, throbbing, typically unilateral head pain associated with sensory hypersensitivities (photophobia, phonophobia) and autonomic features (nausea).",
+    "clinical_features": [
+      "Unilateral throbbing or pulsating cranial pain",
+      "Moderate to severe intensity",
+      "Photophobia or phonophobia",
+      "Nausea or vomiting",
+      "Aggravated by routine physical activity"
+    ],
+    "differential_considerations": [
+      "Tension-Type Headache (bilateral, pressing/tight, non-throbbing)",
+      "Cluster Headache",
+      "Secondary Headache (sinusitis, vascular event)"
+    ],
+    "primary_reference": "REF_IHS_MIGRAINE"
+  },
+  {
+    "id": "acute_gastroenteritis_pattern_supported",
+    "name": "Acute Gastroenteritis Pattern",
+    "category": "Gastroenterology",
+    "description": "Acute inflammation of the mucous membranes of the stomach and intestines resulting in rapid-onset watery diarrhea, nausea, vomiting, and abdominal cramping.",
+    "clinical_features": [
+      "Watery diarrhea (>= 3 times in 24 hours)",
+      "Nausea and/or vomiting",
+      "Abdominal cramping",
+      "Low-grade fever or malaise"
+    ],
+    "differential_considerations": [
+      "Foodborne Intoxication (rapid onset vomiting)",
+      "Inflammatory Bowel Disease Flare",
+      "Appendicitis / Acute Abdomen (severe focal right lower quadrant pain)"
+    ],
+    "primary_reference": "REF_ACG_GASTRO"
+  },
+  {
+    "id": "lower_urinary_tract_infection_pattern_supported",
+    "name": "Uncomplicated Lower Urinary Tract Infection (Cystitis) Pattern",
+    "category": "Urology",
+    "description": "Bacterial colonization and inflammation localized to the bladder and urethra presenting with irritative voiding symptoms without flank pain or systemic fever.",
+    "clinical_features": [
+      "Dysuria (burning during urination)",
+      "Urinary frequency and urgency",
+      "Suprapubic discomfort",
+      "Absence of costovertebral flank pain"
+    ],
+    "differential_considerations": [
+      "Urethritis / Sexually Transmitted Infections",
+      "Interstitial Cystitis",
+      "Overactive Bladder"
+    ],
+    "primary_reference": "REF_EAU_UTI"
+  },
+  {
+    "id": "complicated_upper_uti_pattern_supported",
+    "name": "Suspected Upper Urinary Tract Infection / Pyelonephritis Pattern",
+    "category": "Urology",
+    "description": "Ascending urinary infection extending into the renal parenchyma characterized by lower urinary tract symptoms accompanied by flank pain and systemic fever.",
+    "clinical_features": [
+      "Lower urinary tract symptoms (dysuria, urgency)",
+      "Costovertebral angle / flank pain",
+      "Systemic fever and chills"
+    ],
+    "differential_considerations": [
+      "Renal Calculi (Nephrolithiasis)",
+      "Lower UTI with Musculoskeletal Back Pain",
+      "Intra-abdominal Sepsis"
+    ],
+    "primary_reference": "REF_EAU_UTI"
+  },
+  {
+    "id": "severe_influenza_like_pattern_supported",
+    "name": "Severe Influenza-Like Illness with High Constitutional Burden",
+    "category": "Respiratory",
+    "description": "A higher-severity subset of influenza-like syndrome characterized by very high fever, severe myalgia, and marked prostration.",
+    "clinical_features": [
+      "Influenza-like illness pattern established",
+      "High fever >= 39 C",
+      "Chills and profound fatigue"
+    ],
+    "differential_considerations": [
+      "Secondary Bacterial Pneumonia",
+      "Severe Sepsis",
+      "Viral Myocarditis"
+    ],
+    "primary_reference": "REF_WHO_ILI"
+  }
+]

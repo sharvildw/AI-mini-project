@@ -1,0 +1,72 @@
+```mermaid
+graph TB
+    subgraph UI_Layer [User Interface & Presentation Layer]
+        Dashboard["📊 Dashboard View"]
+        Assessment["🩺 Symptom Assessment View"]
+        ForwardView["⏩ Forward Chaining View"]
+        BackwardView["⏪ Backward Chaining View"]
+        ComparisonView["⚖️ Comparison View"]
+        KBExplorer["📚 Knowledge Base Explorer"]
+        AcademicPage["🎓 Academic & Viva Guide"]
+    end
+
+    subgraph Working_Memory [Working Memory & Fact Store]
+        RawFacts["User Symptom Inputs (Tri-state: TRUE / FALSE / UNKNOWN)"]
+        FactStore["Fact Store (Source: USER vs INFERRED)"]
+    end
+
+    subgraph Safety_Subsystem [Autonomous Safety Subsystem]
+        SafetyMonitor["Safety Engine (Independent Monitor)"]
+        RedFlagsList["Emergency Red Flag Protocol Rules"]
+        EmergencyAlerts["🚨 Emergency Department Triage Directive"]
+    end
+
+    subgraph Inference_Subsystem [Dual Core Inference Engines]
+        Evaluator["Logical Rule Evaluator (Kleene K3 3-Valued Calculus)"]
+        ForwardEngine["Forward Chaining Engine (Data-Driven Modus Ponens)"]
+        BackwardEngine["Backward Chaining Engine (Goal-Directed Proof Tree)"]
+        CycleGuard["Cycle Detection & Depth Limiter"]
+    end
+
+    subgraph Knowledge_Base [Inspectable Declarative Knowledge Base]
+        SymptomsData[("symptoms.json (34 Symptoms)")]
+        RulesData[("rules.json (21 Production Rules)")]
+        ConditionsData[("conditions.json (8 Hypotheses)")]
+        ReferencesData[("references.json (7 Clinical Citations)")]
+    end
+
+    subgraph Audit_Subsystem [Audit & Explanation Subsystem]
+        Explainer["Explanation Engine"]
+        ForwardTrace["Forward Firing Trace"]
+        BackwardTree["Backward Goal Proof Tree"]
+        WhyNot["Why-Not Prerequisite Audit"]
+    end
+
+    %% Connections
+    Assessment --> RawFacts
+    RawFacts --> FactStore
+
+    FactStore --> SafetyMonitor
+    RedFlagsList --> SafetyMonitor
+    SafetyMonitor --> EmergencyAlerts
+    EmergencyAlerts -.-> Dashboard
+    EmergencyAlerts -.-> Assessment
+
+    FactStore --> ForwardEngine
+    FactStore --> BackwardEngine
+
+    SymptomsData --> FactStore
+    RulesData --> Evaluator
+    Evaluator --> ForwardEngine
+    Evaluator --> BackwardEngine
+    BackwardEngine <--> CycleGuard
+
+    ForwardEngine --> ForwardTrace
+    BackwardEngine --> BackwardTree
+
+    ForwardTrace --> Explainer
+    BackwardTree --> Explainer
+    Explainer --> ForwardView
+    Explainer --> BackwardView
+    Explainer --> ComparisonView
+```

@@ -1,0 +1,41 @@
+```mermaid
+flowchart TD
+    Start([Call prove_goal: Goal G, TargetVal]) --> CheckDepth{Depth > MaxDepth?}
+    CheckDepth -- Yes --> RetDepth[Return DEPTH_LIMIT_EXCEEDED]
+
+    CheckDepth -- No --> CheckCycle{G in ActiveGoalStack?}
+    CheckCycle -- Yes --> RetCycle[Return CYCLE_DETECTED]
+
+    CheckCycle -- No --> CheckMemory{G exists in Working Memory?}
+    CheckMemory -- Yes --> MatchValue{Memory Value == TargetVal?}
+    MatchValue -- Yes --> RetDirectMatch[Return SUPPORTED: Direct Fact Match]
+    MatchValue -- No --> RetContradict[Return CONTRADICTED_OR_FAILED]
+
+    CheckMemory -- No --> FindRules[Query KB for Candidate Rules concluding G == TargetVal]
+    FindRules --> HasRules{Candidate Rules Found?}
+    HasRules -- No --> RetUnknownBase[Return UNRESOLVED_UNKNOWN: Missing Leaf Fact]
+
+    HasRules -- Yes --> PushStack[Push G onto ActiveGoalStack]
+    PushStack --> LoopCandidates[Iterate over Candidate Rules R]
+
+    LoopCandidates --> ProveAntecedent[Recursively Prove Antecedent Expression of R]
+    ProveAntecedent --> AntStatus{Antecedent Status?}
+
+    AntStatus -- SUPPORTED --> CacheMemory[Add G = TargetVal to Memory as INFERRED]
+    CacheMemory --> PopStackSuccess[Pop G from ActiveGoalStack]
+    PopStackSuccess --> RetSuccess[Return SUPPORTED: Rule Proven]
+
+    AntStatus -- UNKNOWN --> MarkUnknownBranch[Mark Rule as Unresolved Unknown]
+    MarkUnknownBranch --> NextCandidate[Next Candidate Rule]
+
+    AntStatus -- FAILED --> MarkFailedBranch[Mark Rule as Failed/Contradicted]
+    MarkFailedBranch --> NextCandidate
+
+    NextCandidate --> MoreCandidates{More Candidate Rules to Explore?}
+    MoreCandidates -- Yes --> LoopCandidates
+    MoreCandidates -- No --> PopStackDone[Pop G from ActiveGoalStack]
+
+    PopStackDone --> AnyUnknown{Any Branch UNKNOWN?}
+    AnyUnknown -- Yes --> RetUnknownAll[Return UNRESOLVED_UNKNOWN: Missing Prerequisites]
+    AnyUnknown -- No --> RetFailedAll[Return CONTRADICTED_OR_FAILED: All Rules Failed]
+```

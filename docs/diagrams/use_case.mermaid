@@ -1,0 +1,32 @@
+```mermaid
+graph LR
+    User([User / Medical Student / Examiner])
+
+    subgraph MediLogic_System [MediLogic Expert System]
+        UC1((UC-1: Complete Symptom Assessment))
+        UC2((UC-2: Load Clinical Case Presets))
+        UC3((UC-3: View Emergency Red Flag Warnings))
+        UC4((UC-4: Execute Forward Chaining))
+        UC5((UC-5: Execute Backward Chaining Proof))
+        UC6((UC-6: Compare Algorithms Side-by-Side))
+        UC7((UC-7: Inspect Production Rules & Expressions))
+        UC8((UC-8: Audit Step-by-Step Proof Traces))
+        UC9((UC-9: Reset Assessment State))
+        UC10((UC-10: Review Syllabus & Viva Notes))
+    end
+
+    User --> UC1
+    User --> UC2
+    User --> UC3
+    User --> UC4
+    User --> UC5
+    User --> UC6
+    User --> UC7
+    User --> UC8
+    User --> UC9
+    User --> UC10
+
+    UC4 -.->|includes| UC8
+    UC5 -.->|includes| UC8
+    UC1 -.->|triggers| UC3
+```

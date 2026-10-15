@@ -1,0 +1,274 @@
+[
+  {
+    "id": "fever_present",
+    "name": "Fever (Elevated Body Temperature >= 38 C)",
+    "category": "Respiratory & Constitutional",
+    "description": "Measured or felt systemic elevation in body temperature above standard normal range.",
+    "question": "Do you have an elevated body temperature (fever >= 38 C / 100.4 F)?",
+    "is_emergency": false
+  },
+  {
+    "id": "high_fever_present",
+    "name": "High Fever (>= 39 C / 102.2 F)",
+    "category": "Respiratory & Constitutional",
+    "description": "Significantly elevated body temperature indicating pronounced systemic inflammatory response.",
+    "question": "Is your fever particularly high (>= 39 C / 102.2 F)?",
+    "is_emergency": false
+  },
+  {
+    "id": "cough_present",
+    "name": "Cough",
+    "category": "Respiratory & Constitutional",
+    "description": "Reflex action to clear airways of mucus and irritants.",
+    "question": "Do you have a persistent or frequent cough?",
+    "is_emergency": false
+  },
+  {
+    "id": "sore_throat_present",
+    "name": "Sore Throat (Pharyngitis)",
+    "category": "Respiratory & Constitutional",
+    "description": "Pain, scratchiness, or irritation of the throat that often worsens when swallowing.",
+    "question": "Do you have throat irritation, pain, or scratchiness?",
+    "is_emergency": false
+  },
+  {
+    "id": "nasal_congestion_present",
+    "name": "Nasal Congestion / Stuffy Nose",
+    "category": "Respiratory & Constitutional",
+    "description": "Blockage of nasal passages due to swollen membranes from inflamed blood vessels.",
+    "question": "Are your nasal passages congested or blocked?",
+    "is_emergency": false
+  },
+  {
+    "id": "body_aches_present",
+    "name": "Body Aches / Myalgia",
+    "category": "Respiratory & Constitutional",
+    "description": "Generalized muscle soreness and discomfort frequently accompanying viral systemic infections.",
+    "question": "Are you experiencing generalized muscle aches or soreness across your body?",
+    "is_emergency": false
+  },
+  {
+    "id": "fatigue_present",
+    "name": "Fatigue / Malaise",
+    "category": "Respiratory & Constitutional",
+    "description": "Overall feeling of tiredness, lack of energy, or systemic weakness.",
+    "question": "Do you feel significant fatigue, exhaustion, or general malaise?",
+    "is_emergency": false
+  },
+  {
+    "id": "chills_present",
+    "name": "Chills / Shivering",
+    "category": "Respiratory & Constitutional",
+    "description": "Feeling of coldness with involuntary shivering during an ascending phase of fever.",
+    "question": "Are you experiencing shivering episodes or feeling unusually chilled?",
+    "is_emergency": false
+  },
+  {
+    "id": "rapid_onset_present",
+    "name": "Rapid / Abrupt Symptom Onset (Within Hours)",
+    "category": "Respiratory & Constitutional",
+    "description": "Sudden initiation of acute symptoms occurring over a span of a few hours rather than days.",
+    "question": "Did your symptoms begin suddenly over a few hours rather than developing gradually?",
+    "is_emergency": false
+  },
+  {
+    "id": "sneezing_present",
+    "name": "Paroxysmal Sneezing",
+    "category": "Allergic & Ocular",
+    "description": "Repeated involuntary expulsions of air from the nose and mouth.",
+    "question": "Are you experiencing bouts of repeated sneezing?",
+    "is_emergency": false
+  },
+  {
+    "id": "clear_rhinorrhea_present",
+    "name": "Clear / Watery Runny Nose",
+    "category": "Allergic & Ocular",
+    "description": "Thin, watery, clear nasal discharge typical of allergic irritation or early viral infection.",
+    "question": "Do you have a clear, watery runny nose?",
+    "is_emergency": false
+  },
+  {
+    "id": "itchy_eyes_present",
+    "name": "Itchy / Watery Eyes (Allergic Conjunctivitis)",
+    "category": "Allergic & Ocular",
+    "description": "Pruritus, redness, and lacrimation of both eyes associated with environmental allergens.",
+    "question": "Are your eyes itchy, red, or excessively watery?",
+    "is_emergency": false
+  },
+  {
+    "id": "itchy_nose_or_palate_present",
+    "name": "Itchy Nose or Palate",
+    "category": "Allergic & Ocular",
+    "description": "Localized pruritus in the nasal mucosa or roof of the mouth.",
+    "question": "Do you experience an itchy sensation inside your nose or on the roof of your mouth?",
+    "is_emergency": false
+  },
+  {
+    "id": "allergen_exposure_trigger_present",
+    "name": "Known Allergen Exposure Trigger",
+    "category": "Allergic & Ocular",
+    "description": "Onset or worsening of symptoms following contact with pollen, dust, pet dander, or mold.",
+    "question": "Were your symptoms triggered or worsened by exposure to pollen, dust, animals, or changes in season?",
+    "is_emergency": false
+  },
+  {
+    "id": "headache_present",
+    "name": "Headache (General)",
+    "category": "Neurological & Cranial",
+    "description": "Pain or discomfort located anywhere in the cranial region.",
+    "question": "Do you have a headache?",
+    "is_emergency": false
+  },
+  {
+    "id": "unilateral_throbbing_headache_present",
+    "name": "Unilateral Pulsating / Throbbing Headache",
+    "category": "Neurological & Cranial",
+    "description": "Pulsating or throbbing cranial pain predominantly localized to one side of the head.",
+    "question": "Is the headache throbbing/pulsating and mostly on one side of your head?",
+    "is_emergency": false
+  },
+  {
+    "id": "photophobia_present",
+    "name": "Photophobia / Light Sensitivity",
+    "category": "Neurological & Cranial",
+    "description": "Discomfort or pain in the eyes triggered by normal ambient lighting.",
+    "question": "Are your eyes unusually sensitive or painful in normal room light or sunlight?",
+    "is_emergency": false
+  },
+  {
+    "id": "phonophobia_present",
+    "name": "Phonophobia / Sound Sensitivity",
+    "category": "Neurological & Cranial",
+    "description": "Heightened discomfort or pain induced by ordinary everyday sounds.",
+    "question": "Do normal sounds feel uncomfortably loud or worsen your headache?",
+    "is_emergency": false
+  },
+  {
+    "id": "visual_aura_present",
+    "name": "Visual Aura (Flickering Lights / Blind Spots)",
+    "category": "Neurological & Cranial",
+    "description": "Transient neurological visual disturbances preceding or accompanying headache attacks.",
+    "question": "Did you notice zigzag lines, flashing lights, or blind spots before or during the headache?",
+    "is_emergency": false
+  },
+  {
+    "id": "worsened_by_routine_activity_present",
+    "name": "Headache Worsened by Routine Physical Activity",
+    "category": "Neurological & Cranial",
+    "description": "Aggravation of cranial discomfort by walking, climbing stairs, or head movement.",
+    "question": "Does walking, climbing stairs, or moving your head aggravate the headache pain?",
+    "is_emergency": false
+  },
+  {
+    "id": "nausea_present",
+    "name": "Nausea",
+    "category": "Gastrointestinal",
+    "description": "Unpleasant sensation of inclination to vomit.",
+    "question": "Are you feeling nauseous or sick to your stomach?",
+    "is_emergency": false
+  },
+  {
+    "id": "vomiting_present",
+    "name": "Vomiting",
+    "category": "Gastrointestinal",
+    "description": "Involuntary oral expulsion of gastric contents.",
+    "question": "Have you vomited or had episodes of retching?",
+    "is_emergency": false
+  },
+  {
+    "id": "watery_diarrhea_present",
+    "name": "Frequent Watery Diarrhea",
+    "category": "Gastrointestinal",
+    "description": "Passage of loose or liquid stools three or more times within a 24-hour period.",
+    "question": "Are you experiencing loose, watery stools three or more times a day?",
+    "is_emergency": false
+  },
+  {
+    "id": "abdominal_cramps_present",
+    "name": "Abdominal Cramping / Pain (Mild to Moderate)",
+    "category": "Gastrointestinal",
+    "description": "Intermittent colicky discomfort or spasms in the abdominal region.",
+    "question": "Do you have intermittent abdominal cramps or tummy ache?",
+    "is_emergency": false
+  },
+  {
+    "id": "dysuria_present",
+    "name": "Dysuria (Burning Sensation During Urination)",
+    "category": "Urological",
+    "description": "Painful, burning, or stinging sensation experienced during micturition.",
+    "question": "Do you experience pain or a burning sensation when passing urine?",
+    "is_emergency": false
+  },
+  {
+    "id": "urinary_frequency_present",
+    "name": "Urinary Frequency (Frequent Small Urination)",
+    "category": "Urological",
+    "description": "Need to urinate much more frequently than normal, often voiding only small amounts.",
+    "question": "Are you needing to urinate much more often than usual, voiding small amounts?",
+    "is_emergency": false
+  },
+  {
+    "id": "urinary_urgency_present",
+    "name": "Urinary Urgency (Sudden Compelling Need to Void)",
+    "category": "Urological",
+    "description": "Sudden, compelling, and difficult-to-defer urge to urinate.",
+    "question": "Do you feel a sudden, intense urge to urinate that cannot be deferred?",
+    "is_emergency": false
+  },
+  {
+    "id": "suprapubic_tenderness_present",
+    "name": "Suprapubic Discomfort / Lower Pelvic Pressure",
+    "category": "Urological",
+    "description": "Aching or heaviness in the lower central pelvic area just above the pubic bone.",
+    "question": "Do you feel discomfort, heaviness, or pressure in your lower pelvis above the pubic area?",
+    "is_emergency": false
+  },
+  {
+    "id": "flank_pain_present",
+    "name": "Flank Pain / Costovertebral Angle Tenderness",
+    "category": "Urological",
+    "description": "Pain situated in the lower back or side between the ribs and the hip.",
+    "question": "Do you have pain in your lower back or side between your ribs and hips?",
+    "is_emergency": false
+  },
+  {
+    "id": "chest_pain_present",
+    "name": "Chest Pain / Pressure (RED FLAG)",
+    "category": "Emergency Warning Signs",
+    "description": "Severe, crushing, radiating, or unexplained pain, tightness, or pressure in the chest.",
+    "question": "Do you have chest pain, pressure, tightness, or pain radiating to your jaw/left arm?",
+    "is_emergency": true
+  },
+  {
+    "id": "severe_shortness_of_breath_present",
+    "name": "Severe Shortness of Breath (RED FLAG)",
+    "category": "Emergency Warning Signs",
+    "description": "Inability to breathe adequately, gasping at rest, or blue lips/fingertips.",
+    "question": "Are you experiencing severe difficulty breathing, struggle to speak full sentences, or gasping at rest?",
+    "is_emergency": true
+  },
+  {
+    "id": "sudden_neurological_deficit_present",
+    "name": "Sudden Neurological Deficit (RED FLAG)",
+    "category": "Emergency Warning Signs",
+    "description": "Sudden facial drooping, arm/leg weakness or numbness, slurred speech, or confusion.",
+    "question": "Have you noticed sudden facial drooping, one-sided weakness/numbness, speech difficulty, or severe confusion?",
+    "is_emergency": true
+  },
+  {
+    "id": "stiff_neck_with_high_fever_present",
+    "name": "Stiff Neck with High Fever (RED FLAG)",
+    "category": "Emergency Warning Signs",
+    "description": "Inability to flex chin to chest accompanied by severe fever, confusion, or altered consciousness.",
+    "question": "Do you have severe neck stiffness (inability to touch chin to chest) combined with high fever?",
+    "is_emergency": true
+  },
+  {
+    "id": "severe_unrelenting_abdominal_pain_present",
+    "name": "Severe Unrelenting Abdominal Pain (RED FLAG)",
+    "category": "Emergency Warning Signs",
+    "description": "Sudden rigid, excruciating, or unrelenting abdominal pain suggesting peritonitis or visceral perforation.",
+    "question": "Is your abdominal pain extraordinarily severe, rigid, agonizing, or worsening rapidly without relief?",
+    "is_emergency": true
+  }
+]
