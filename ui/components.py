@@ -15,51 +15,77 @@ from engine.safety import EmergencyAlert
 
 # Friendly category mapping for non-technical users
 SIMPLE_CATEGORY_MAPPING = {
-    "General": [
+    "General & Constitutional": [
         "fever_present",
         "high_fever_present",
         "body_aches_present",
         "fatigue_present",
         "chills_present",
         "rapid_onset_present",
+        "loss_of_taste_or_smell_present",
     ],
-    "Nose and Breathing": [
+    "Nose, Throat & Respiratory": [
         "cough_present",
+        "productive_cough_present",
+        "wheezing_present",
         "sore_throat_present",
+        "tonsillar_exudate_present",
+        "tender_cervical_nodes_present",
         "nasal_congestion_present",
         "clear_rhinorrhea_present",
+        "purulent_nasal_discharge_present",
         "sneezing_present",
     ],
-    "Head": [
+    "Head, Eyes & Ears": [
         "headache_present",
         "unilateral_throbbing_headache_present",
+        "bilateral_band_like_headache_present",
+        "neck_muscle_tension_present",
+        "facial_pressure_present",
         "photophobia_present",
         "phonophobia_present",
         "visual_aura_present",
         "worsened_by_routine_activity_present",
+        "ear_pain_present",
+        "ear_fullness_present",
+        "itchy_eyes_present",
+        "conjunctival_redness_present",
+        "itchy_nose_or_palate_present",
+        "allergen_exposure_trigger_present",
     ],
-    "Stomach": [
+    "Stomach & Digestion": [
         "nausea_present",
         "vomiting_present",
         "watery_diarrhea_present",
         "abdominal_cramps_present",
+        "heartburn_reflux_present",
+        "acid_regurgitation_present",
+        "symptoms_worse_lying_down_present",
     ],
-    "Other": [
-        "itchy_eyes_present",
-        "itchy_nose_or_palate_present",
-        "allergen_exposure_trigger_present",
+    "Urinary & Pelvic": [
         "dysuria_present",
         "urinary_frequency_present",
         "urinary_urgency_present",
         "suprapubic_tenderness_present",
         "flank_pain_present",
     ],
+    "Skin & Musculoskeletal": [
+        "spreading_skin_redness_present",
+        "urticaria_hives_present",
+        "joint_pain_swelling_present",
+    ],
     "Emergency Warning Signs": [
         "chest_pain_present",
+        "radiating_chest_pain_present",
         "severe_shortness_of_breath_present",
+        "hemoptysis_coughing_blood_present",
         "sudden_neurological_deficit_present",
+        "syncope_fainting_present",
         "stiff_neck_with_high_fever_present",
         "severe_unrelenting_abdominal_pain_present",
+        "focal_right_lower_quadrant_pain_present",
+        "bloody_stool_present",
+        "cold_sweats_diaphoresis_present",
     ],
 }
 
@@ -95,15 +121,40 @@ SIMPLE_SYMPTOM_DETAILS = {
         "desc": "Symptoms started quickly over a few hours rather than days",
         "icon": "⚡",
     },
+    "loss_of_taste_or_smell_present": {
+        "title": "Loss of Taste or Smell",
+        "desc": "Sudden inability to smell scents or taste food flavors (anosmia/ageusia)",
+        "icon": "👃",
+    },
     "cough_present": {
         "title": "Cough",
-        "desc": "Frequent or dry/wet coughing",
+        "desc": "Frequent or dry coughing",
         "icon": "🗣️",
+    },
+    "productive_cough_present": {
+        "title": "Cough with Phlegm / Mucus",
+        "desc": "Cough bringing up noticeable phlegm or chest secretions",
+        "icon": "🫁",
+    },
+    "wheezing_present": {
+        "title": "Wheezing / Whistling Breath",
+        "desc": "High-pitched musical whistling sound when breathing out",
+        "icon": "🌬️",
     },
     "sore_throat_present": {
         "title": "Sore Throat",
         "desc": "Scratchy, painful, or irritated throat when swallowing",
         "icon": "🧣",
+    },
+    "tonsillar_exudate_present": {
+        "title": "White Spots on Tonsils",
+        "desc": "Visible white patches or coating on tonsils in back of throat",
+        "icon": "⚪",
+    },
+    "tender_cervical_nodes_present": {
+        "title": "Tender Swollen Neck Glands",
+        "desc": "Painful, swollen lumps felt in the front of your neck",
+        "icon": "🔘",
     },
     "nasal_congestion_present": {
         "title": "Stuffy Nose",
@@ -115,20 +166,50 @@ SIMPLE_SYMPTOM_DETAILS = {
         "desc": "Thin, watery, clear liquid running from the nose",
         "icon": "💧",
     },
+    "purulent_nasal_discharge_present": {
+        "title": "Thick Yellow/Green Mucus",
+        "desc": "Cloudy, thick, yellow or green nasal secretions",
+        "icon": "🧪",
+    },
     "sneezing_present": {
         "title": "Frequent Sneezing",
         "desc": "Bouts of repeated sneezing",
         "icon": "🤧",
     },
+    "facial_pressure_present": {
+        "title": "Facial Pain or Pressure",
+        "desc": "Fullness, aching, or tenderness over cheeks or forehead",
+        "icon": "💆",
+    },
+    "ear_pain_present": {
+        "title": "Earache / Ear Pain",
+        "desc": "Sharp, dull, or throbbing pain inside one or both ears",
+        "icon": "👂",
+    },
+    "ear_fullness_present": {
+        "title": "Ear Fullness / Muffled Sound",
+        "desc": "Feeling of pressure or clogged hearing in the ear",
+        "icon": "🔇",
+    },
     "headache_present": {
         "title": "Headache",
-        "desc": "General pain or aching in the head",
+        "desc": "General pain or aching anywhere in the head",
         "icon": "🤕",
     },
     "unilateral_throbbing_headache_present": {
-        "title": "Throbbing Headache on One Side",
-        "desc": "Pulsating pain mostly on the left or right side of your head",
+        "title": "Throbbing Headache (One Side)",
+        "desc": "Pulsating pain mostly on the left or right side of head",
         "icon": "💥",
+    },
+    "bilateral_band_like_headache_present": {
+        "title": "Band-Like Headache (Both Sides)",
+        "desc": "Dull ache feeling like a tight band wrapped around head",
+        "icon": "🩹",
+    },
+    "neck_muscle_tension_present": {
+        "title": "Neck & Shoulder Tension",
+        "desc": "Achy stiffness or tightness in back of neck and shoulders",
+        "icon": "💆‍♂️",
     },
     "photophobia_present": {
         "title": "Sensitive to Light",
@@ -166,14 +247,34 @@ SIMPLE_SYMPTOM_DETAILS = {
         "icon": "🚽",
     },
     "abdominal_cramps_present": {
-        "title": "Stomach Discomfort / Cramps",
-        "desc": "Mild to moderate cramping or tummy pain",
+        "title": "Stomach Cramping",
+        "desc": "Intermittent spasms, tummy ache, or belly cramps",
         "icon": "🩺",
+    },
+    "heartburn_reflux_present": {
+        "title": "Heartburn (Burning Behind Breastbone)",
+        "desc": "Burning sensation rising from upper tummy into the chest",
+        "icon": "❤️‍🔥",
+    },
+    "acid_regurgitation_present": {
+        "title": "Acid / Sour Taste in Mouth",
+        "desc": "Sour or bitter fluid coming up into back of throat",
+        "icon": "🍋",
+    },
+    "symptoms_worse_lying_down_present": {
+        "title": "Worse After Meals or Lying Down",
+        "desc": "Burning or discomfort intensifies when lying flat in bed",
+        "icon": "🛌",
     },
     "itchy_eyes_present": {
         "title": "Itchy or Watery Eyes",
         "desc": "Red, itchy, or watery eyes (allergic feeling)",
         "icon": "👁️",
+    },
+    "conjunctival_redness_present": {
+        "title": "Red or Bloodshot Eyes",
+        "desc": "Pink or bloodshot whites of eyes",
+        "icon": "👀",
     },
     "itchy_nose_or_palate_present": {
         "title": "Itchy Nose or Mouth Roof",
@@ -182,7 +283,7 @@ SIMPLE_SYMPTOM_DETAILS = {
     },
     "allergen_exposure_trigger_present": {
         "title": "Allergy Trigger",
-        "desc": "Symptoms flared up around pollen, dust, animals, or season changes",
+        "desc": "Symptoms flared up around pollen, dust, animals, or seasons",
         "icon": "🌸",
     },
     "dysuria_present": {
@@ -202,7 +303,7 @@ SIMPLE_SYMPTOM_DETAILS = {
     },
     "suprapubic_tenderness_present": {
         "title": "Lower Pelvic Pressure",
-        "desc": "Discomfort or heaviness in the lower central tummy area",
+        "desc": "Discomfort or heaviness in lower central tummy above groin",
         "icon": "📍",
     },
     "flank_pain_present": {
@@ -210,20 +311,55 @@ SIMPLE_SYMPTOM_DETAILS = {
         "desc": "Pain in the back or side area between the ribs and hips",
         "icon": "🩺",
     },
+    "spreading_skin_redness_present": {
+        "title": "Spreading Red / Warm Skin Patch",
+        "desc": "Warm, red, tender skin area that is actively expanding",
+        "icon": "🩹",
+    },
+    "urticaria_hives_present": {
+        "title": "Itchy Hives / Welts",
+        "desc": "Raised, itchy red wheals across the skin",
+        "icon": "🔴",
+    },
+    "joint_pain_swelling_present": {
+        "title": "Joint Pain or Swelling",
+        "desc": "Stiffness, tenderness, or swelling in knees, hands, or ankles",
+        "icon": "🦴",
+    },
     "chest_pain_present": {
         "title": "Chest Pain or Pressure",
         "desc": "Severe pressure, tightness, squeezing, or chest pain",
         "icon": "💔",
+    },
+    "radiating_chest_pain_present": {
+        "title": "Radiating Chest Pain to Arm/Jaw",
+        "desc": "Chest discomfort spreading to left arm, neck, jaw, or back",
+        "icon": "⚡",
+    },
+    "cold_sweats_diaphoresis_present": {
+        "title": "Cold Sweats / Clamminess",
+        "desc": "Sudden drenching cold clammy perspiration",
+        "icon": "💧",
     },
     "severe_shortness_of_breath_present": {
         "title": "Severe Shortness of Breath",
         "desc": "Gasping for air, unable to finish full sentences",
         "icon": "🫁",
     },
+    "hemoptysis_coughing_blood_present": {
+        "title": "Coughing Up Blood",
+        "desc": "Coughing up red blood or bloody streaks in phlegm",
+        "icon": "🩸",
+    },
     "sudden_neurological_deficit_present": {
         "title": "Sudden Weakness or Speech Trouble",
         "desc": "Face drooping, sudden arm/leg weakness, or slurred speech",
         "icon": "🧠",
+    },
+    "syncope_fainting_present": {
+        "title": "Fainting / Passing Out",
+        "desc": "Blackout, fainting episode, or sudden collapse",
+        "icon": "💫",
     },
     "stiff_neck_with_high_fever_present": {
         "title": "Stiff Neck with High Fever",
@@ -234,6 +370,16 @@ SIMPLE_SYMPTOM_DETAILS = {
         "title": "Severe Unrelenting Stomach Pain",
         "desc": "Agonizing, sudden, rigid, or unbearable stomach pain",
         "icon": "🚨",
+    },
+    "focal_right_lower_quadrant_pain_present": {
+        "title": "Severe Pain in Lower Right Belly",
+        "desc": "Intense sharp pain localized to right lower abdomen",
+        "icon": "📍",
+    },
+    "bloody_stool_present": {
+        "title": "Blood in Stool / Black Tarry Stool",
+        "desc": "Visible red blood or dark tarry bowel movements",
+        "icon": "🩸",
     },
 }
 
@@ -394,6 +540,79 @@ PRESET_CASES: Dict[str, Dict[str, Any]] = {
         },
         "expected_goal": "influenza_like_illness_supported",
     },
+    "COVID-19 Infection Example": {
+        "description": "Fever, cough, and sudden loss of taste or smell.",
+        "facts": {
+            "fever_present": TruthValue.TRUE,
+            "cough_present": TruthValue.TRUE,
+            "loss_of_taste_or_smell_present": TruthValue.TRUE,
+            "fatigue_present": TruthValue.TRUE,
+            "chest_pain_present": TruthValue.FALSE,
+        },
+        "expected_goal": "covid_19_pattern_supported",
+    },
+    "Strep Throat Example": {
+        "description": "Severe sore throat with fever and white spots on tonsils, without cough.",
+        "facts": {
+            "sore_throat_present": TruthValue.TRUE,
+            "fever_present": TruthValue.TRUE,
+            "tonsillar_exudate_present": TruthValue.TRUE,
+            "tender_cervical_nodes_present": TruthValue.TRUE,
+            "cough_present": TruthValue.FALSE,
+        },
+        "expected_goal": "strep_throat_pattern_supported",
+    },
+    "Sinus Infection (Sinusitis) Example": {
+        "description": "Stuffy nose, facial pressure over cheeks/forehead, and thick yellow-green mucus.",
+        "facts": {
+            "nasal_congestion_present": TruthValue.TRUE,
+            "facial_pressure_present": TruthValue.TRUE,
+            "purulent_nasal_discharge_present": TruthValue.TRUE,
+            "headache_present": TruthValue.TRUE,
+        },
+        "expected_goal": "acute_sinusitis_pattern_supported",
+    },
+    "Tension Headache Example": {
+        "description": "Dull band-like ache on both sides with tight neck muscles and no nausea.",
+        "facts": {
+            "headache_present": TruthValue.TRUE,
+            "bilateral_band_like_headache_present": TruthValue.TRUE,
+            "neck_muscle_tension_present": TruthValue.TRUE,
+            "nausea_present": TruthValue.FALSE,
+            "photophobia_present": TruthValue.FALSE,
+        },
+        "expected_goal": "tension_type_headache_pattern_supported",
+    },
+    "Acid Reflux / GERD Example": {
+        "description": "Heartburn burning behind breastbone, worse after meals and when lying down.",
+        "facts": {
+            "heartburn_reflux_present": TruthValue.TRUE,
+            "acid_regurgitation_present": TruthValue.TRUE,
+            "symptoms_worse_lying_down_present": TruthValue.TRUE,
+            "chest_pain_present": TruthValue.FALSE,
+        },
+        "expected_goal": "gerd_reflux_pattern_supported",
+    },
+    "Acute Bronchitis Example": {
+        "description": "Persistent cough bringing up phlegm/mucus with tiredness after a cold.",
+        "facts": {
+            "cough_present": TruthValue.TRUE,
+            "productive_cough_present": TruthValue.TRUE,
+            "fatigue_present": TruthValue.TRUE,
+            "high_fever_present": TruthValue.FALSE,
+        },
+        "expected_goal": "acute_bronchitis_pattern_supported",
+    },
+    "Asthma / Wheezing Example": {
+        "description": "High-pitched whistling breath, cough, and chest tightness triggered by allergens.",
+        "facts": {
+            "wheezing_present": TruthValue.TRUE,
+            "cough_present": TruthValue.TRUE,
+            "allergen_exposure_trigger_present": TruthValue.TRUE,
+            "chest_pain_present": TruthValue.FALSE,
+        },
+        "expected_goal": "asthma_bronchospasm_pattern_supported",
+    },
 }
 
 
@@ -417,9 +636,14 @@ def initialize_session_state(kb: KnowledgeBase) -> None:
     if "current_nav" not in st.session_state:
         st.session_state.current_nav = "Home"
 
+    if "assessment_version" not in st.session_state:
+        st.session_state.assessment_version = 0
+
 
 def reset_assessment(kb: KnowledgeBase) -> None:
     """Clears all entered facts and cached results."""
+    st.session_state.assessment_version = st.session_state.get("assessment_version", 0) + 1
     st.session_state.user_facts = {sid: TruthValue.UNKNOWN for sid in kb.symptoms.keys()}
     st.session_state.forward_result = None
     st.session_state.backward_result = None
+

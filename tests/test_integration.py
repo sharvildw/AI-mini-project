@@ -93,3 +93,71 @@ def test_safety_alert_coexists_with_diagnosis(system_components):
     safe_rep = safety.check_safety(input_facts)
     assert safe_rep.has_emergency
     assert any(a.symptom_id == "chest_pain_present" for a in safe_rep.alerts)
+
+
+def test_expanded_kb_scale(system_components):
+    """Verify that the knowledge base has been substantially expanded."""
+    kb, fc, bc, expl, safety = system_components
+    assert len(kb.symptoms) >= 50, f"Expected at least 50 symptoms, got {len(kb.symptoms)}"
+    assert len(kb.conditions) >= 15, f"Expected at least 15 conditions, got {len(kb.conditions)}"
+    assert len(kb.rules) >= 40, f"Expected at least 40 rules, got {len(kb.rules)}"
+    assert len(kb.references) >= 15, f"Expected at least 15 references, got {len(kb.references)}"
+
+
+def test_covid_deduction(system_components):
+    """Verify forward deduction for COVID-19 via sensory loss and fever."""
+    kb, fc, bc, expl, safety = system_components
+    input_facts = {
+        "fever_present": Fact(id="fever_present", value=TruthValue.TRUE),
+        "loss_of_taste_or_smell_present": Fact(id="loss_of_taste_or_smell_present", value=TruthValue.TRUE),
+    }
+    fc_res = fc.run(input_facts)
+    supported_ids = [h["condition_id"] for h in fc_res.supported_hypotheses]
+    assert "covid_19_pattern_supported" in supported_ids
+
+
+def test_strep_throat_deduction(system_components):
+    """Verify forward deduction for Streptococcal Pharyngitis via Centor criteria."""
+    kb, fc, bc, expl, safety = system_components
+    input_facts = {
+        "sore_throat_present": Fact(id="sore_throat_present", value=TruthValue.TRUE),
+        "fever_present": Fact(id="fever_present", value=TruthValue.TRUE),
+        "tonsillar_exudate_present": Fact(id="tonsillar_exudate_present", value=TruthValue.TRUE),
+    }
+    fc_res = fc.run(input_facts)
+    supported_ids = [h["condition_id"] for h in fc_res.supported_hypotheses]
+    assert "strep_throat_pattern_supported" in supported_ids
+
+
+def test_candidate_differential_hypotheses(system_components):
+    """Verify that partial symptom matches return valid differential candidates with missing symptoms."""
+    kb, fc, bc, expl, safety = system_components
+    # Patient only has sore throat and fever (missing tonsillar exudate or lymph nodes for strep throat)
+    input_facts = {
+        "sore_throat_present": Fact(id="sore_throat_present", value=TruthValue.TRUE),
+        "fever_present": Fact(id="fever_present", value=TruthValue.TRUE),
+    }
+    fc_res = fc.run(input_facts)
+    supported_ids = {h["condition_id"] for h in fc_res.supported_hypotheses}
+    candidates = expl.find_candidate_and_differential_hypotheses(fc_res.working_memory, supported_ids)
+
+    cand_ids = [c["condition_id"] for c in candidates]
+    assert "strep_throat_pattern_supported" in cand_ids
+    strep_cand = next(c for c in candidates if c["condition_id"] == "strep_throat_pattern_supported")
+    assert strep_cand["match_score"] >= 50
+    assert len(strep_cand["missing_symptoms"]) > 0
+
+
+def test_new_emergency_red_flags(system_components):
+    """Verify that new high-acuity red flags trigger immediate emergency warnings."""
+    kb, fc, bc, expl, safety = system_components
+    input_facts = {
+        "radiating_chest_pain_present": Fact(id="radiating_chest_pain_present", value=TruthValue.TRUE),
+        "bloody_stool_present": Fact(id="bloody_stool_present", value=TruthValue.TRUE),
+    }
+    safe_rep = safety.check_safety(input_facts)
+    assert safe_rep.has_emergency
+    alert_syms = [a.symptom_id for a in safe_rep.alerts]
+    assert "radiating_chest_pain_present" in alert_syms
+    assert "bloody_stool_present" in alert_syms
+

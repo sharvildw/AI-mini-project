@@ -52,6 +52,14 @@ def load_system() -> tuple[KnowledgeBase, ForwardChainingEngine, BackwardChainin
 kb, fc_engine, bc_engine, expl_engine, safety_engine = load_system()
 initialize_session_state(kb)
 
+# Helper function for safe button-driven page navigation
+def navigate_to(page_name: str) -> None:
+    """Safely transitions navigation to target page and triggers rerun."""
+    st.session_state["_target_nav"] = page_name
+    st.session_state.current_nav = page_name
+    st.rerun()
+
+
 # Convert session state user facts to Fact objects
 def get_current_fact_store() -> Dict[str, Fact]:
     store: Dict[str, Fact] = {}
@@ -83,17 +91,25 @@ nav_options = [
     "🔬 AI Lab",
 ]
 
-# Synchronize Navigation with Session State
-nav_index = 0
-for idx, opt in enumerate(nav_options):
-    if st.session_state.current_nav in opt:
-        nav_index = idx
-        break
+# Apply programmatic navigation requests (from buttons) before rendering the radio widget
+if "_target_nav" in st.session_state:
+    target = st.session_state.pop("_target_nav")
+    st.session_state.current_nav = target
+    for opt in nav_options:
+        if target in opt:
+            st.session_state["nav_radio"] = opt
+            break
+
+# Ensure nav_radio is initialized to match current_nav
+if "nav_radio" not in st.session_state:
+    for opt in nav_options:
+        if st.session_state.current_nav in opt:
+            st.session_state["nav_radio"] = opt
+            break
 
 selected_page = st.sidebar.radio(
     "Menu",
     nav_options,
-    index=nav_index,
     key="nav_radio",
     label_visibility="collapsed",
 )
@@ -127,8 +143,7 @@ if safety_report.has_emergency:
 
 if st.sidebar.button("Start Again (Reset)", use_container_width=True):
     reset_assessment(kb)
-    st.session_state.current_nav = "Check Symptoms"
-    st.rerun()
+    navigate_to("Check Symptoms")
 
 st.sidebar.caption("MediLogic • Educational AI Demonstration")
 
@@ -171,12 +186,10 @@ if st.session_state.current_nav == "Home":
     col_btn1, col_btn2 = st.columns([1, 1])
     with col_btn1:
         if st.button("👉 Start Symptom Check", type="primary", use_container_width=True):
-            st.session_state.current_nav = "Check Symptoms"
-            st.rerun()
+            navigate_to("Check Symptoms")
     with col_btn2:
         if st.button("💡 Learn How It Works", type="secondary", use_container_width=True):
-            st.session_state.current_nav = "Learn How It Works"
-            st.rerun()
+            navigate_to("Learn How It Works")
 
     st.markdown("---")
 
@@ -199,8 +212,23 @@ if st.session_state.current_nav == "Home":
                 # Run forward chaining immediately
                 store = get_current_fact_store()
                 st.session_state.forward_result = fc_engine.run(store)
-                st.session_state.current_nav = "My Results"
-                st.rerun()
+                navigate_to("My Results")
+
+    with st.expander("📚 Explore More Clinical Cases (COVID-19, Strep Throat, Sinusitis, GERD, Asthma, etc.)"):
+        more_cols = st.columns(2)
+        for idx, p_name in enumerate(preset_names[3:]):
+            col_target = more_cols[idx % 2]
+            with col_target:
+                p_info = PRESET_CASES[p_name]
+                st.markdown(f"**{p_name}**")
+                st.caption(p_info["description"])
+                if st.button(f"Load '{p_name}'", key=f"more_pre_{idx}", use_container_width=True):
+                    reset_assessment(kb)
+                    for f_k, f_v in p_info["facts"].items():
+                        st.session_state.user_facts[f_k] = f_v
+                    store = get_current_fact_store()
+                    st.session_state.forward_result = fc_engine.run(store)
+                    navigate_to("My Results")
 
 
 # ==============================================================================
@@ -248,11 +276,12 @@ elif st.session_state.current_nav == "Check Symptoms":
 
                 with c_choice:
                     state_idx = 0 if current_state == TruthValue.UNKNOWN else (1 if current_state == TruthValue.TRUE else 2)
+                    cur_ver = st.session_state.get("assessment_version", 0)
                     new_val_str = st.radio(
                         f"Choice for {sk}",
                         ["Not sure", "Yes, I have this", "No, I do not"],
                         index=state_idx,
-                        key=f"check_sym_{sk}",
+                        key=f"check_sym_{cur_ver}_{sk}",
                         horizontal=True,
                         label_visibility="collapsed",
                     )
@@ -272,8 +301,7 @@ elif st.session_state.current_nav == "Check Symptoms":
             # Run inference on current facts
             fact_store = get_current_fact_store()
             st.session_state.forward_result = fc_engine.run(fact_store)
-            st.session_state.current_nav = "My Results"
-            st.rerun()
+            navigate_to("My Results")
 
     with action_col2:
         if st.button("Start Again", type="secondary", use_container_width=True):
@@ -304,84 +332,120 @@ elif st.session_state.current_nav == "My Results":
     if not fact_store:
         st.info("You haven't selected any symptoms yet. Please start by checking your symptoms.")
         if st.button("👉 Select Symptoms Now", type="primary"):
-            st.session_state.current_nav = "Check Symptoms"
-            st.rerun()
-    elif not result.supported_hypotheses:
-        st.markdown(
-            """
-            <div class="simple-card" style="border-left: 6px solid #F59E0B;">
-                <h3 style="color:#92400E; margin-top:0;">More information is needed</h3>
-                <p style="color:#78350F; margin-bottom:0;">
-                    No matching educational illness patterns were confirmed by the current rules.
-                    This usually means your symptoms are either too mild, non-specific, or some key symptoms remain "Not sure".
-                </p>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+            navigate_to("Check Symptoms")
     else:
-        st.markdown(
-            """
-            <div class="simple-card" style="border-left: 6px solid #0D9488;">
-                <h3 style="color:#0F766E; margin-top:0;">Some patterns match your selected symptoms</h3>
-                <p style="color:#334155; margin-bottom:0;">
-                    Based on the educational medical rules in MediLogic, the following pattern(s) were identified:
-                </p>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+        supported_ids = {h["condition_id"] for h in result.supported_hypotheses}
+        candidate_hypotheses = expl_engine.find_candidate_and_differential_hypotheses(result.working_memory, supported_ids)
 
-        for hypo in result.supported_hypotheses:
-            cond_id = hypo["condition_id"]
-            cond_name = hypo["condition_name"]
-            desc = hypo["description"]
-            features = hypo.get("clinical_features", [])
-            rule_id = hypo.get("derivation_rule", "")
-
-            # Collect which of the patient's symptoms supported this
-            matched_symptoms = []
-            for feat in features:
-                # Highlight if symptom is active in working memory
-                matched_symptoms.append(feat)
-
+        # 1. Definitively Confirmed Hypotheses (Modus Ponens)
+        if result.supported_hypotheses:
             st.markdown(
-                f"""
-                <div class="result-card result-card-supported">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-                        <h3 style="margin:0;">{cond_name}</h3>
-                        <span class="badge-match">Pattern Matched</span>
-                    </div>
-                    <p style="color:#475569; font-size:0.98rem; margin-bottom:0.8rem;">{desc}</p>
-                    <div style="font-size:0.9rem; color:#0F172A; margin-bottom:0.4rem;">
-                        <strong>Key Features in this Pattern:</strong>
-                    </div>
-                    <ul style="margin-top:0.2rem; color:#334155; font-size:0.9rem;">
-                        {"".join(f"<li>{f}</li>" for f in features[:4])}
-                    </ul>
+                """
+                <div class="simple-card" style="border-left: 6px solid #0D9488;">
+                    <h3 style="color:#0F766E; margin-top:0;">✅ Confirmed Patterns (100% Rule Deduction)</h3>
+                    <p style="color:#334155; margin-bottom:0;">
+                        Based on verified clinical guidelines, your reported symptoms satisfy all antecedent requirements for the following condition(s):
+                    </p>
                 </div>
                 """,
                 unsafe_allow_html=True,
             )
 
-            # Plain-Language "Why am I seeing this?"
-            with st.expander(f"❓ Why am I seeing '{cond_name}'?"):
-                st.write(
-                    f"MediLogic checked its rules for **{cond_name}**. The symptoms you marked as present satisfied "
-                    f"all the necessary conditions defined in the clinical guideline reference."
-                )
-                st.write("**What you can consider:**")
-                st.write(f"- Differential possibilities: {', '.join(hypo.get('differential_considerations', [])[:3])}")
-                st.caption(f"Educational reference: {hypo.get('primary_reference', 'Clinical Practice Guideline')}")
+            for hypo in result.supported_hypotheses:
+                cond_id = hypo["condition_id"]
+                cond_name = hypo["condition_name"]
+                desc = hypo["description"]
+                features = hypo.get("clinical_features", [])
+                rule_id = hypo.get("derivation_rule", "")
 
-            # Expandable Technical Explanation
-            with st.expander(f"🔬 How did MediLogic reach this result? (Technical Details)"):
-                st.markdown(f"**Triggered Rule:** `{rule_id}`")
-                rule_obj = kb.rules_by_id.get(rule_id)
-                if rule_obj:
-                    st.markdown(f"<div class='tech-box'>{rule_obj.readable_text}</div>", unsafe_allow_html=True)
-                    st.markdown(f"**Rule explanation:** {rule_obj.explanation}")
-                st.write("**Inference step:** Modus Ponens verified that all antecedent conditions were TRUE in working memory.")
+                st.markdown(
+                    f"""
+                    <div class="result-card result-card-supported">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                            <h3 style="margin:0;">{cond_name}</h3>
+                            <span class="badge-match">Pattern Matched</span>
+                        </div>
+                        <p style="color:#475569; font-size:0.98rem; margin-bottom:0.8rem;">{desc}</p>
+                        <div style="font-size:0.9rem; color:#0F172A; margin-bottom:0.4rem;">
+                            <strong>Key Clinical Features:</strong>
+                        </div>
+                        <ul style="margin-top:0.2rem; color:#334155; font-size:0.9rem;">
+                            {"".join(f"<li>{f}</li>" for f in features[:4])}
+                        </ul>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
+
+                # Plain-Language "Why am I seeing this?"
+                with st.expander(f"❓ Why am I seeing '{cond_name}'?"):
+                    st.write(
+                        f"MediLogic verified the production rules for **{cond_name}**. The symptoms you marked as present satisfied "
+                        f"all necessary antecedents defined in authoritative medical practice guidelines."
+                    )
+                    st.write("**Differential considerations to keep in mind:**")
+                    st.write(f"- {', '.join(hypo.get('differential_considerations', [])[:4])}")
+                    st.caption(f"Educational reference: {hypo.get('primary_reference', 'Clinical Practice Guideline')}")
+
+                # Expandable Technical Explanation
+                with st.expander(f"🔬 How did MediLogic deduce this? (Rule Audit)"):
+                    st.markdown(f"**Triggered Production Rule:** `{rule_id}`")
+                    rule_obj = kb.rules_by_id.get(rule_id)
+                    if rule_obj:
+                        st.markdown(f"<div class='tech-box'>{rule_obj.readable_text}</div>", unsafe_allow_html=True)
+                        st.markdown(f"**Clinical rationale:** {rule_obj.explanation}")
+                    st.write("**Inference engine verification:** Modus Ponens verified that all antecedent conditions evaluated to TRUE in working memory.")
+
+        # 2. Potential Differential Candidates (Near-Matches & Partial Criteria)
+        if candidate_hypotheses:
+            header_text = "🟡 Other Differential Patterns Under Consideration" if result.supported_hypotheses else "🟡 Potential Health Patterns (Criteria Partially Met)"
+            st.markdown(f"### {header_text}")
+            st.caption("These conditions share several of your symptoms, but some key criteria are currently unconfirmed or missing:")
+
+            for cand in candidate_hypotheses[:4]:
+                c_name = cand["condition_name"]
+                c_desc = cand["description"]
+                c_score = cand["match_score"]
+                matching = cand["matching_symptoms"]
+                missing = cand["missing_symptoms"]
+
+                matching_str = ", ".join(matching) if matching else "None"
+                missing_str = ", ".join(missing[:3]) if missing else "None"
+
+                st.markdown(
+                    f"""
+                    <div class="simple-card" style="border-left: 5px solid #F59E0B; margin-bottom: 0.8rem;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.3rem;">
+                            <h4 style="margin:0; color:#0F172A;">{c_name}</h4>
+                            <span style="background:#FEF3C7; color:#92400E; padding:0.2rem 0.5rem; border-radius:6px; font-size:0.8rem; font-weight:700;">
+                                {c_score}% Diagnostic Alignment
+                            </span>
+                        </div>
+                        <p style="font-size:0.9rem; color:#475569; margin-bottom:0.5rem;">{c_desc}</p>
+                        <div style="font-size:0.85rem; color:#1E293B;">
+                            <strong>✅ Symptoms you marked present:</strong> {matching_str}
+                        </div>
+                        <div style="font-size:0.85rem; color:#B45309; margin-top:0.3rem;">
+                            <strong>❓ Key symptoms currently 'Not sure' or needed to confirm:</strong> {missing_str}
+                        </div>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
+
+        elif not result.supported_hypotheses:
+            st.markdown(
+                """
+                <div class="simple-card" style="border-left: 6px solid #64748B;">
+                    <h3 style="color:#1E293B; margin-top:0;">No Specific Health Pattern Confirmed</h3>
+                    <p style="color:#475569; margin-bottom:0;">
+                        The symptoms you entered are either mild, non-specific, or do not form a recognized syndromic cluster in our expert system rules.
+                        Try checking additional symptoms or clarifying any symptoms currently marked as "Not sure".
+                    </p>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
 
     st.markdown("---")
 
@@ -389,12 +453,10 @@ elif st.session_state.current_nav == "My Results":
     col_nav1, col_nav2 = st.columns([1, 1])
     with col_nav1:
         if st.button("✏️ Change My Symptoms", use_container_width=True):
-            st.session_state.current_nav = "Check Symptoms"
-            st.rerun()
+            navigate_to("Check Symptoms")
     with col_nav2:
         if st.button("🔬 Explore in AI Lab", use_container_width=True):
-            st.session_state.current_nav = "AI Lab"
-            st.rerun()
+            navigate_to("AI Lab")
 
 
 # ==============================================================================
@@ -465,8 +527,7 @@ elif st.session_state.current_nav == "Learn How It Works":
     )
 
     if st.button("👉 Try Checking Symptoms Now", type="primary"):
-        st.session_state.current_nav = "Check Symptoms"
-        st.rerun()
+        navigate_to("Check Symptoms")
 
 
 # ==============================================================================

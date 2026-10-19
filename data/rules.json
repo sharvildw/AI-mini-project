@@ -426,5 +426,544 @@
     },
     "explanation": "Direct co-manifestation of painful urination, unilateral flank pain, and high fever supports suspected acute pyelonephritis.",
     "source": "REF_EAU_UTI"
+  },
+  {
+    "id": "R022",
+    "name": "COVID-19 Pattern via Sensory Deficit and Respiratory Triad",
+    "category": "Respiratory",
+    "readable_text": "IF loss_of_taste_or_smell_present AND (cough_present OR fever_present) THEN covid_19_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "loss_of_taste_or_smell_present", "value": "TRUE"},
+        {
+          "or": [
+            {"fact": "cough_present", "value": "TRUE"},
+            {"fact": "fever_present", "value": "TRUE"}
+          ]
+        }
+      ]
+    },
+    "consequent": {
+      "fact": "covid_19_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Acute loss of taste or smell (anosmia/ageusia) coupled with acute respiratory manifestations (cough or fever) provides pathognomonic evidence for COVID-19 infection.",
+    "source": "REF_CDC_COVID"
+  },
+  {
+    "id": "R023",
+    "name": "COVID-19 Pattern via Febrile Syndrome and Anosmia",
+    "category": "Respiratory",
+    "readable_text": "IF acute_febrile_respiratory_syndrome_supported AND loss_of_taste_or_smell_present THEN covid_19_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "acute_febrile_respiratory_syndrome_supported", "value": "TRUE"},
+        {"fact": "loss_of_taste_or_smell_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "covid_19_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "An established acute febrile respiratory syndrome accompanied by new onset anosmia confirms a COVID-19 clinical pattern.",
+    "source": "REF_CDC_COVID"
+  },
+  {
+    "id": "R024",
+    "name": "Streptococcal Pharyngitis Syndrome Derivation (Centor Criteria)",
+    "category": "Otolaryngology & Throat",
+    "readable_text": "IF sore_throat_present AND fever_present AND (tonsillar_exudate_present OR tender_cervical_nodes_present) THEN strep_throat_syndrome_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "sore_throat_present", "value": "TRUE"},
+        {"fact": "fever_present", "value": "TRUE"},
+        {
+          "or": [
+            {"fact": "tonsillar_exudate_present", "value": "TRUE"},
+            {"fact": "tender_cervical_nodes_present", "value": "TRUE"}
+          ]
+        }
+      ]
+    },
+    "consequent": {
+      "fact": "strep_throat_syndrome_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Co-occurrence of pharyngeal pain, fever, and tonsillar exudate or cervical lymphadenopathy satisfies modified Centor clinical criteria for streptococcal pharyngitis.",
+    "source": "REF_IDSA_STREP"
+  },
+  {
+    "id": "R025",
+    "name": "Streptococcal Pharyngitis Confirmation",
+    "category": "Otolaryngology & Throat",
+    "readable_text": "IF strep_throat_syndrome_supported AND tonsillar_exudate_present THEN strep_throat_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "strep_throat_syndrome_supported", "value": "TRUE"},
+        {"fact": "tonsillar_exudate_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "strep_throat_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Established febrile pharyngeal syndrome combined with visible tonsillar exudate strongly supports acute bacterial streptococcal pharyngitis.",
+    "source": "REF_IDSA_STREP"
+  },
+  {
+    "id": "R026",
+    "name": "Sinus Obstruction Syndrome Derivation",
+    "category": "Otolaryngology & Nose",
+    "readable_text": "IF nasal_congestion_present AND facial_pressure_present THEN sinus_obstruction_syndrome_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "nasal_congestion_present", "value": "TRUE"},
+        {"fact": "facial_pressure_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "sinus_obstruction_syndrome_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Nasal congestion coupled with localized facial pain or fullness over the cheeks/forehead indicates paranasal sinus ostium blockage.",
+    "source": "REF_AAO_SINUS"
+  },
+  {
+    "id": "R027",
+    "name": "Acute Rhinosinusitis Pattern from Obstruction and Purulent Secretions",
+    "category": "Otolaryngology & Nose",
+    "readable_text": "IF sinus_obstruction_syndrome_supported AND purulent_nasal_discharge_present THEN acute_sinusitis_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "sinus_obstruction_syndrome_supported", "value": "TRUE"},
+        {"fact": "purulent_nasal_discharge_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "acute_sinusitis_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Paranasal sinus blockage with thick, purulent (yellow/green) nasal drainage fulfills standard guidelines for acute rhinosinusitis.",
+    "source": "REF_AAO_SINUS"
+  },
+  {
+    "id": "R028",
+    "name": "Acute Rhinosinusitis via Facial Pressure and Headache",
+    "category": "Otolaryngology & Nose",
+    "readable_text": "IF facial_pressure_present AND purulent_nasal_discharge_present AND headache_present THEN acute_sinusitis_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "facial_pressure_present", "value": "TRUE"},
+        {"fact": "purulent_nasal_discharge_present", "value": "TRUE"},
+        {"fact": "headache_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "acute_sinusitis_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Facial tenderness accompanied by purulent rhinorrhea and secondary cranial headache establishes acute rhinosinusitis.",
+    "source": "REF_AAO_SINUS"
+  },
+  {
+    "id": "R029",
+    "name": "Lower Airway Sputum Secretion Derivation",
+    "category": "Respiratory",
+    "readable_text": "IF cough_present AND productive_cough_present THEN lower_airway_hypersecretion_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "cough_present", "value": "TRUE"},
+        {"fact": "productive_cough_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "lower_airway_hypersecretion_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Frequent cough productive of noticeable phlegm demonstrates tracheobronchial mucosal hypersecretion.",
+    "source": "REF_CHEST_BRONCHITIS"
+  },
+  {
+    "id": "R030",
+    "name": "Acute Bronchitis Pattern",
+    "category": "Respiratory",
+    "readable_text": "IF lower_airway_hypersecretion_supported AND fatigue_present THEN acute_bronchitis_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "lower_airway_hypersecretion_supported", "value": "TRUE"},
+        {"fact": "fatigue_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "acute_bronchitis_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Productive lower airway cough coupled with constitutional fatigue supports self-limited acute bronchitis.",
+    "source": "REF_CHEST_BRONCHITIS"
+  },
+  {
+    "id": "R031",
+    "name": "Bronchospastic Airway Syndrome Derivation",
+    "category": "Pulmonology",
+    "readable_text": "IF wheezing_present AND cough_present THEN bronchospastic_syndrome_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "wheezing_present", "value": "TRUE"},
+        {"fact": "cough_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "bronchospastic_syndrome_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Co-occurrence of expiratory musical wheezing and irritative cough establishes lower airway bronchoconstriction.",
+    "source": "REF_GINA_ASTHMA"
+  },
+  {
+    "id": "R032",
+    "name": "Asthma / Bronchospasm Exacerbation Pattern",
+    "category": "Pulmonology",
+    "readable_text": "IF bronchospastic_syndrome_supported AND (allergen_exposure_trigger_present OR rapid_onset_present) THEN asthma_bronchospasm_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "bronchospastic_syndrome_supported", "value": "TRUE"},
+        {
+          "or": [
+            {"fact": "allergen_exposure_trigger_present", "value": "TRUE"},
+            {"fact": "rapid_onset_present", "value": "TRUE"}
+          ]
+        }
+      ]
+    },
+    "consequent": {
+      "fact": "asthma_bronchospasm_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Bronchospastic airway symptoms triggered by allergens or exhibiting rapid onset fulfill clinical criteria for an asthma / reactive airway exacerbation.",
+    "source": "REF_GINA_ASTHMA"
+  },
+  {
+    "id": "R033",
+    "name": "Pericranial Muscle Tension Cluster Derivation",
+    "category": "Neurology",
+    "readable_text": "IF bilateral_band_like_headache_present AND neck_muscle_tension_present THEN pericranial_tension_cluster_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "bilateral_band_like_headache_present", "value": "TRUE"},
+        {"fact": "neck_muscle_tension_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "pericranial_tension_cluster_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Bilateral band-like pressure accompanied by cervical muscle stiffness reflects heightened pericranial myofascial tension.",
+    "source": "REF_IHS_TENSION"
+  },
+  {
+    "id": "R034",
+    "name": "Tension-Type Headache Pattern",
+    "category": "Neurology",
+    "readable_text": "IF pericranial_tension_cluster_supported AND headache_present THEN tension_type_headache_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "pericranial_tension_cluster_supported", "value": "TRUE"},
+        {"fact": "headache_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "tension_type_headache_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "General cranial ache combined with verified pericranial band-like tension confirms standard ICHD-3 tension-type headache.",
+    "source": "REF_IHS_TENSION"
+  },
+  {
+    "id": "R035",
+    "name": "Acid Peptic Reflux Cluster Derivation",
+    "category": "Gastroenterology",
+    "readable_text": "IF heartburn_reflux_present AND acid_regurgitation_present THEN acid_peptic_reflux_cluster_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "heartburn_reflux_present", "value": "TRUE"},
+        {"fact": "acid_regurgitation_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "acid_peptic_reflux_cluster_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Retrosternal pyrosis (heartburn) together with acidic fluid regurgitation defines the classical symptom constellation of gastric acid reflux.",
+    "source": "REF_ACG_GERD"
+  },
+  {
+    "id": "R036",
+    "name": "Gastroesophageal Reflux Disease (GERD) Pattern",
+    "category": "Gastroenterology",
+    "readable_text": "IF acid_peptic_reflux_cluster_supported AND symptoms_worse_lying_down_present THEN gerd_reflux_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "acid_peptic_reflux_cluster_supported", "value": "TRUE"},
+        {"fact": "symptoms_worse_lying_down_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "gerd_reflux_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Acid reflux cluster with characteristic aggravation in the supine or postprandial state fulfills diagnostic criteria for GERD.",
+    "source": "REF_ACG_GERD"
+  },
+  {
+    "id": "R037",
+    "name": "Otic Inflammatory Syndrome Derivation",
+    "category": "Otolaryngology & Ear",
+    "readable_text": "IF ear_pain_present AND ear_fullness_present THEN otic_inflammatory_syndrome_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "ear_pain_present", "value": "TRUE"},
+        {"fact": "ear_fullness_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "otic_inflammatory_syndrome_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Sharp or aching ear pain accompanied by ear fullness or diminished sound conduction reflects middle ear pressure and effusion.",
+    "source": "REF_AAP_AOM"
+  },
+  {
+    "id": "R038",
+    "name": "Acute Otitis Media Pattern",
+    "category": "Otolaryngology & Ear",
+    "readable_text": "IF otic_inflammatory_syndrome_supported AND (fever_present OR nasal_congestion_present) THEN acute_otitis_media_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "otic_inflammatory_syndrome_supported", "value": "TRUE"},
+        {
+          "or": [
+            {"fact": "fever_present", "value": "TRUE"},
+            {"fact": "nasal_congestion_present", "value": "TRUE"}
+          ]
+        }
+      ]
+    },
+    "consequent": {
+      "fact": "acute_otitis_media_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Middle ear pain and fullness following upper airway viral congestion or accompanied by fever confirms acute otitis media.",
+    "source": "REF_AAP_AOM"
+  },
+  {
+    "id": "R039",
+    "name": "Allergic Ocular Cluster Derivation",
+    "category": "Ophthalmology & Allergy",
+    "readable_text": "IF itchy_eyes_present AND conjunctival_redness_present THEN allergic_ocular_cluster_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "itchy_eyes_present", "value": "TRUE"},
+        {"fact": "conjunctival_redness_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "allergic_ocular_cluster_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Prominent ocular pruritus accompanied by conjunctival hyperemic injection reflects IgE mast cell degranulation on the ocular surface.",
+    "source": "REF_AAO_CONJUNCTIVITIS"
+  },
+  {
+    "id": "R040",
+    "name": "Acute Allergic Conjunctivitis Pattern",
+    "category": "Ophthalmology & Allergy",
+    "readable_text": "IF allergic_ocular_cluster_supported AND (allergen_exposure_trigger_present OR clear_rhinorrhea_present) THEN allergic_conjunctivitis_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "allergic_ocular_cluster_supported", "value": "TRUE"},
+        {
+          "or": [
+            {"fact": "allergen_exposure_trigger_present", "value": "TRUE"},
+            {"fact": "clear_rhinorrhea_present", "value": "TRUE"}
+          ]
+        }
+      ]
+    },
+    "consequent": {
+      "fact": "allergic_conjunctivitis_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Bilateral ocular redness and itching associated with documented environmental trigger or rhinorrhea establishes allergic conjunctivitis.",
+    "source": "REF_AAO_CONJUNCTIVITIS"
+  },
+  {
+    "id": "R041",
+    "name": "Invasive Colonic Syndrome Derivation",
+    "category": "Gastroenterology",
+    "readable_text": "IF bloody_stool_present AND abdominal_cramps_present THEN invasive_colonic_syndrome_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "bloody_stool_present", "value": "TRUE"},
+        {"fact": "abdominal_cramps_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "invasive_colonic_syndrome_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Visible blood in stool associated with severe abdominal cramping indicates mucosal ulceration and invasive colonic inflammation.",
+    "source": "REF_IDSA_DIARRHEA"
+  },
+  {
+    "id": "R042",
+    "name": "Acute Invasive Enteritis (Dysentery) Pattern",
+    "category": "Gastroenterology",
+    "readable_text": "IF invasive_colonic_syndrome_supported AND (fever_present OR high_fever_present) THEN acute_invasive_enteritis_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "invasive_colonic_syndrome_supported", "value": "TRUE"},
+        {
+          "or": [
+            {"fact": "fever_present", "value": "TRUE"},
+            {"fact": "high_fever_present", "value": "TRUE"}
+          ]
+        }
+      ]
+    },
+    "consequent": {
+      "fact": "acute_invasive_enteritis_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Bloody diarrhea accompanied by severe cramps and fever confirms suspected acute invasive bacterial or amoebic dysentery.",
+    "source": "REF_IDSA_DIARRHEA"
+  },
+  {
+    "id": "R043",
+    "name": "Common Cold Pattern via Sore Throat and Nasal Congestion",
+    "category": "Respiratory",
+    "readable_text": "IF sore_throat_present AND nasal_congestion_present AND (clear_rhinorrhea_present OR sneezing_present) THEN common_cold_like_illness_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "sore_throat_present", "value": "TRUE"},
+        {"fact": "nasal_congestion_present", "value": "TRUE"},
+        {
+          "or": [
+            {"fact": "clear_rhinorrhea_present", "value": "TRUE"},
+            {"fact": "sneezing_present", "value": "TRUE"}
+          ]
+        }
+      ]
+    },
+    "consequent": {
+      "fact": "common_cold_like_illness_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Concurrent sore throat, nasal obstruction, and watery rhinorrhea or sneezing provides strong alternative support for viral common cold.",
+    "source": "REF_CDC_COLD"
+  },
+  {
+    "id": "R044",
+    "name": "Acute Gastroenteritis Flexible Colic Variant",
+    "category": "Gastroenterology",
+    "readable_text": "IF watery_diarrhea_present AND abdominal_cramps_present AND (nausea_present OR vomiting_present) THEN acute_gastroenteritis_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "watery_diarrhea_present", "value": "TRUE"},
+        {"fact": "abdominal_cramps_present", "value": "TRUE"},
+        {
+          "or": [
+            {"fact": "nausea_present", "value": "TRUE"},
+            {"fact": "vomiting_present", "value": "TRUE"}
+          ]
+        }
+      ]
+    },
+    "consequent": {
+      "fact": "acute_gastroenteritis_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Watery stools accompanied by abdominal colic and upper gastrointestinal distress confirms acute gastroenteritis.",
+    "source": "REF_ACG_GASTRO"
+  },
+  {
+    "id": "R045",
+    "name": "Migraine Sensory Triad Variant",
+    "category": "Neurology",
+    "readable_text": "IF headache_present AND unilateral_throbbing_headache_present AND photophobia_present AND phonophobia_present THEN migraine_like_headache_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "headache_present", "value": "TRUE"},
+        {"fact": "unilateral_throbbing_headache_present", "value": "TRUE"},
+        {"fact": "photophobia_present", "value": "TRUE"},
+        {"fact": "phonophobia_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "migraine_like_headache_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Unilateral pulsating headache associated with dual sensory hypersensitivity (photophobia and phonophobia) definitively supports migraine.",
+    "source": "REF_IHS_MIGRAINE"
+  },
+  {
+    "id": "R046",
+    "name": "GERD Postural Confirmation Variant",
+    "category": "Gastroenterology",
+    "readable_text": "IF heartburn_reflux_present AND symptoms_worse_lying_down_present THEN gerd_reflux_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "heartburn_reflux_present", "value": "TRUE"},
+        {"fact": "symptoms_worse_lying_down_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "gerd_reflux_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Heartburn exhibiting marked postural exacerbation when lying flat directly supports gastroesophageal reflux disease.",
+    "source": "REF_ACG_GERD"
+  },
+  {
+    "id": "R047",
+    "name": "Streptococcal Pharyngitis via Cervical Adenopathy",
+    "category": "Otolaryngology & Throat",
+    "readable_text": "IF sore_throat_present AND tender_cervical_nodes_present AND fever_present THEN strep_throat_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "sore_throat_present", "value": "TRUE"},
+        {"fact": "tender_cervical_nodes_present", "value": "TRUE"},
+        {"fact": "fever_present", "value": "TRUE"}
+      ]
+    },
+    "consequent": {
+      "fact": "strep_throat_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Febrile pharyngitis presenting with tender anterior cervical lymphadenitis strongly supports acute streptococcal pharyngitis.",
+    "source": "REF_IDSA_STREP"
+  },
+  {
+    "id": "R048",
+    "name": "Acute Bronchitis Febrile Variant",
+    "category": "Respiratory",
+    "readable_text": "IF productive_cough_present AND cough_present AND (fever_present OR chills_present) THEN acute_bronchitis_pattern_supported",
+    "antecedent": {
+      "and": [
+        {"fact": "productive_cough_present", "value": "TRUE"},
+        {"fact": "cough_present", "value": "TRUE"},
+        {
+          "or": [
+            {"fact": "fever_present", "value": "TRUE"},
+            {"fact": "chills_present", "value": "TRUE"}
+          ]
+        }
+      ]
+    },
+    "consequent": {
+      "fact": "acute_bronchitis_pattern_supported",
+      "value": "TRUE"
+    },
+    "explanation": "Cough productive of phlegm combined with low-grade fever or chills supports lower tracheobronchial bronchitis.",
+    "source": "REF_CHEST_BRONCHITIS"
   }
 ]

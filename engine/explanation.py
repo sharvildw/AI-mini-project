@@ -138,6 +138,79 @@ class ExplanationEngine:
 
         return items
 
+    def find_candidate_and_differential_hypotheses(
+        self,
+        working_memory: Dict[str, Fact],
+        supported_condition_ids: Set[str],
+    ) -> List[Dict[str, Any]]:
+        """Identifies differential candidate conditions that partially match the patient's facts.
+
+        Calculates diagnostic alignment and pinpoints missing vs present symptoms to produce
+        reliable, clinically actionable guidance even when rules have not 100% saturated.
+        """
+        candidates: List[Dict[str, Any]] = []
+
+        for cond_id, cond_data in self.kb.conditions.items():
+            if cond_id in supported_condition_ids:
+                continue
+
+            candidate_rules = self.kb.get_candidate_rules_for_goal(cond_id)
+            if not candidate_rules:
+                continue
+
+            best_match_for_condition: Optional[Dict[str, Any]] = None
+            highest_score = 0.0
+
+            for rule in candidate_rules:
+                leaf_facts = self.kb.extract_leaf_facts_from_expression(rule.antecedent)
+                true_facts = []
+                false_facts = []
+                unknown_facts = []
+
+                for fid in leaf_facts:
+                    f_obj = working_memory.get(fid)
+                    sym_info = self.kb.symptoms.get(fid, {})
+                    sym_name = sym_info.get("name", fid)
+                    if f_obj and f_obj.is_true():
+                        true_facts.append(sym_name)
+                    elif f_obj and f_obj.is_false():
+                        false_facts.append(sym_name)
+                    else:
+                        unknown_facts.append(sym_name)
+
+                total_facts = len(leaf_facts)
+                if total_facts == 0:
+                    continue
+
+                score = len(true_facts) / total_facts
+
+                # To be considered a plausible candidate:
+                # At least 1 matching symptom, no explicit contradictions, and highest score
+                if len(true_facts) >= 1 and score > highest_score and len(false_facts) == 0:
+                    highest_score = score
+                    best_match_for_condition = {
+                        "condition_id": cond_id,
+                        "condition_name": cond_data.get("name", cond_id),
+                        "category": cond_data.get("category", "General"),
+                        "description": cond_data.get("description", ""),
+                        "match_score": round(score * 100),
+                        "matching_symptoms": true_facts,
+                        "missing_symptoms": unknown_facts,
+                        "contradicted_symptoms": false_facts,
+                        "clinical_features": cond_data.get("clinical_features", []),
+                        "differential_considerations": cond_data.get("differential_considerations", []),
+                        "primary_reference": cond_data.get("primary_reference", ""),
+                        "rule_id": rule.id,
+                        "rule_name": rule.name,
+                    }
+
+            if best_match_for_condition and best_match_for_condition["match_score"] >= 33:
+                candidates.append(best_match_for_condition)
+
+        # Sort by match score descending
+        candidates.sort(key=lambda c: c["match_score"], reverse=True)
+        return candidates
+
     def compare_engines(
         self,
         forward_res: ForwardChainingResult,
@@ -169,3 +242,5 @@ class ExplanationEngine:
                 f"on establishing the targeted hypothesis '{target}' and investigating only necessary prerequisites."
             ),
         }
+
+

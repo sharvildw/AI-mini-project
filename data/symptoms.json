@@ -270,5 +270,197 @@
     "description": "Sudden rigid, excruciating, or unrelenting abdominal pain suggesting peritonitis or visceral perforation.",
     "question": "Is your abdominal pain extraordinarily severe, rigid, agonizing, or worsening rapidly without relief?",
     "is_emergency": true
+  },
+  {
+    "id": "loss_of_taste_or_smell_present",
+    "name": "Loss of Taste or Smell (Anosmia / Ageusia)",
+    "category": "Respiratory & Constitutional",
+    "description": "Sudden reduction or complete loss of the ability to smell aromas or taste food flavors.",
+    "question": "Have you suddenly lost your sense of taste or smell?",
+    "is_emergency": false
+  },
+  {
+    "id": "productive_cough_present",
+    "name": "Productive Cough with Phlegm / Mucus",
+    "category": "Respiratory & Constitutional",
+    "description": "Coughing that brings up noticeable secretions, mucus, or phlegm from the bronchial tree.",
+    "question": "Are you coughing up phlegm, mucus, or thick secretions?",
+    "is_emergency": false
+  },
+  {
+    "id": "wheezing_present",
+    "name": "Wheezing / Whistling Breath",
+    "category": "Respiratory & Constitutional",
+    "description": "High-pitched coarse whistling sound produced during breathing due to narrowed airways.",
+    "question": "Do you hear a whistling or squeaking sound when you breathe out (wheezing)?",
+    "is_emergency": false
+  },
+  {
+    "id": "facial_pressure_present",
+    "name": "Facial Pain / Pressure (Cheeks or Forehead)",
+    "category": "Otolaryngology & Cranial",
+    "description": "Aching pressure, tenderness, or heaviness over the sinuses, cheeks, or forehead, often worse leaning forward.",
+    "question": "Do you feel fullness, pressure, or aching pain across your cheeks, forehead, or around your eyes?",
+    "is_emergency": false
+  },
+  {
+    "id": "purulent_nasal_discharge_present",
+    "name": "Thick Yellow or Green Nasal Discharge",
+    "category": "Otolaryngology & Cranial",
+    "description": "Opaque, thick, yellow, or greenish nasal secretions indicating significant neutrophil mucosal infiltration.",
+    "question": "Is your nasal mucus cloudy, thick, yellow, or greenish?",
+    "is_emergency": false
+  },
+  {
+    "id": "tonsillar_exudate_present",
+    "name": "White Spots / Exudates on Tonsils",
+    "category": "Otolaryngology & Throat",
+    "description": "Visible white or yellow spots, flecks, or patches of pus on swollen palatine tonsils.",
+    "question": "Can you see white spots, pus patches, or coatings on your tonsils or throat?",
+    "is_emergency": false
+  },
+  {
+    "id": "tender_cervical_nodes_present",
+    "name": "Swollen / Tender Neck Lymph Nodes",
+    "category": "Otolaryngology & Throat",
+    "description": "Enlarged, sensitive, or painful lymph glands felt beneath the jaw or along the front of the neck.",
+    "question": "Are the lymph nodes in the front of your neck swollen, tender, or painful to the touch?",
+    "is_emergency": false
+  },
+  {
+    "id": "bilateral_band_like_headache_present",
+    "name": "Dull Band-Like Headache (Both Sides)",
+    "category": "Neurological & Cranial",
+    "description": "Non-pulsating, pressing, or dull aching head discomfort encircling the forehead and back of head like a tight band.",
+    "question": "Does your headache feel like a tight band or heavy weight pressing around both sides of your head?",
+    "is_emergency": false
+  },
+  {
+    "id": "neck_muscle_tension_present",
+    "name": "Neck and Shoulder Muscle Tension / Stiffness",
+    "category": "Neurological & Cranial",
+    "description": "Tightness, aching, or soreness in the posterior neck and trapezius muscles without true meningeal rigidity.",
+    "question": "Are your neck and shoulder muscles tight, achy, or stiff?",
+    "is_emergency": false
+  },
+  {
+    "id": "heartburn_reflux_present",
+    "name": "Heartburn / Burning Chest Sensation Behind Breastbone",
+    "category": "Gastrointestinal",
+    "description": "Burning sensation rising from the upper abdomen or lower chest up into the throat.",
+    "question": "Do you have a burning sensation behind your breastbone or in your chest (heartburn)?",
+    "is_emergency": false
+  },
+  {
+    "id": "acid_regurgitation_present",
+    "name": "Acid Regurgitation / Sour Taste in Mouth",
+    "category": "Gastrointestinal",
+    "description": "Unpleasant sour, acidic, or bitter fluid flowing back up into the mouth or back of throat.",
+    "question": "Do you feel sour or bitter fluid backing up into your throat or mouth?",
+    "is_emergency": false
+  },
+  {
+    "id": "symptoms_worse_lying_down_present",
+    "name": "Symptoms Worse After Eating or Lying Down",
+    "category": "Gastrointestinal",
+    "description": "Exacerbation of chest or upper abdominal discomfort when resting flat or shortly after large meals.",
+    "question": "Do your symptoms worsen after eating heavy meals or when you lie flat in bed?",
+    "is_emergency": false
+  },
+  {
+    "id": "ear_pain_present",
+    "name": "Earache / Ear Pain (Otalgia)",
+    "category": "Otolaryngology & Ear",
+    "description": "Sharp, dull, or throbbing pain localized inside one or both ears.",
+    "question": "Do you have pain, aching, or throbbing inside your ear?",
+    "is_emergency": false
+  },
+  {
+    "id": "ear_fullness_present",
+    "name": "Ear Fullness / Muffled Hearing",
+    "category": "Otolaryngology & Ear",
+    "description": "Sensation of pressure, clogged ears, or transiently muffled hearing.",
+    "question": "Does your ear feel clogged, full of pressure, or is your hearing muffled?",
+    "is_emergency": false
+  },
+  {
+    "id": "conjunctival_redness_present",
+    "name": "Red, Pink, or Bloodshot Eyes",
+    "category": "Allergic & Ocular",
+    "description": "Hyperemia and dilation of conjunctival blood vessels causing red or pink discoloration of the sclera.",
+    "question": "Are the whites of your eyes visibly red, pink, or bloodshot?",
+    "is_emergency": false
+  },
+  {
+    "id": "bloody_stool_present",
+    "name": "Visible Blood in Stool / Black Tarry Stool (RED FLAG)",
+    "category": "Emergency Warning Signs",
+    "description": "Presence of red blood, blood clots, or black tarry stools indicating lower or upper GI tract bleeding.",
+    "question": "Have you noticed bright red blood in your stool or black, sticky, tar-like bowel movements?",
+    "is_emergency": true
+  },
+  {
+    "id": "radiating_chest_pain_present",
+    "name": "Chest Pain Radiating to Left Arm, Jaw, or Back (RED FLAG)",
+    "category": "Emergency Warning Signs",
+    "description": "Chest discomfort or heaviness spreading to the left shoulder, left arm, neck, jaw, or shoulder blades.",
+    "question": "Does your chest pain spread to your left arm, shoulder, jaw, neck, or back?",
+    "is_emergency": true
+  },
+  {
+    "id": "cold_sweats_diaphoresis_present",
+    "name": "Cold Sweats / Profuse Clamminess (RED FLAG)",
+    "category": "Emergency Warning Signs",
+    "description": "Sudden breakout of cold, clammy sweat accompanying pain, lightheadedness, or nausea.",
+    "question": "Have you broken out in a cold, clammy sweat along with your symptoms?",
+    "is_emergency": true
+  },
+  {
+    "id": "syncope_fainting_present",
+    "name": "Fainting / Sudden Loss of Consciousness (RED FLAG)",
+    "category": "Emergency Warning Signs",
+    "description": "Transient loss of consciousness, blackout episode, or collapse.",
+    "question": "Have you passed out, fainted, blacked out, or collapsed?",
+    "is_emergency": true
+  },
+  {
+    "id": "hemoptysis_coughing_blood_present",
+    "name": "Coughing Up Blood / Bloody Sputum (RED FLAG)",
+    "category": "Emergency Warning Signs",
+    "description": "Expectoration of bright red blood or blood-streaked sputum from the respiratory tract.",
+    "question": "Are you coughing up bright red blood or noticeable streaks of blood in your phlegm?",
+    "is_emergency": true
+  },
+  {
+    "id": "focal_right_lower_quadrant_pain_present",
+    "name": "Severe Pain in Lower Right Abdomen (RED FLAG)",
+    "category": "Emergency Warning Signs",
+    "description": "Persistent sharp, localized tenderness or rebound pain in the right lower quadrant of the abdomen.",
+    "question": "Do you have severe, sharp pain focused specifically in your lower right abdomen?",
+    "is_emergency": true
+  },
+  {
+    "id": "spreading_skin_redness_present",
+    "name": "Rapidly Spreading Red, Warm, Swollen Skin",
+    "category": "Dermatological",
+    "description": "Expanding area of erythema, local warmth, swelling, and tenderness suggesting bacterial soft tissue cellulitis.",
+    "question": "Do you have a patch of skin that is hot, swollen, painful, and spreading outward?",
+    "is_emergency": false
+  },
+  {
+    "id": "urticaria_hives_present",
+    "name": "Itchy Raised Red Welts / Hives (Urticaria)",
+    "category": "Dermatological",
+    "description": "Transient, highly pruritic, raised edematous plaques with central clearing caused by histamine release.",
+    "question": "Do you have raised, itchy red welts or hives that appear and disappear across your skin?",
+    "is_emergency": false
+  },
+  {
+    "id": "joint_pain_swelling_present",
+    "name": "Joint Pain, Stiffness, or Swelling",
+    "category": "Musculoskeletal",
+    "description": "Aching discomfort, morning stiffness, or visible enlargement in one or more joints.",
+    "question": "Are you experiencing pain, morning stiffness, or swelling in your joints?",
+    "is_emergency": false
   }
 ]

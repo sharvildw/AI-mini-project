@@ -54,5 +54,85 @@
     "year": 2021,
     "description": "Clinical triage indicators representing immediate potential threats to life or limb requiring urgent emergency medical evaluation.",
     "url": "https://www.acep.org/"
+  },
+  "REF_CDC_COVID": {
+    "id": "REF_CDC_COVID",
+    "title": "CDC Clinical Spectrum and Presentation of SARS-CoV-2 (COVID-19) Infection",
+    "organization": "Centers for Disease Control and Prevention (CDC)",
+    "year": 2023,
+    "description": "Clinical presentation of acute COVID-19 infection highlighting fever, cough, fatigue, headache, and pathognomonic new loss of taste or smell.",
+    "url": "https://www.cdc.gov/coronavirus/2019-ncov/hcp/clinical-guidance-management-patients.html"
+  },
+  "REF_IDSA_STREP": {
+    "id": "REF_IDSA_STREP",
+    "title": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis",
+    "organization": "Infectious Diseases Society of America (IDSA)",
+    "year": 2020,
+    "description": "Evidence-based Centor / McIsaac criteria for streptococcal pharyngitis: fever, tonsillar exudates, tender anterior cervical adenopathy, and absence of cough.",
+    "url": "https://www.idsociety.org/practice-guideline/streptococcal-pharyngitis/"
+  },
+  "REF_AAO_SINUS": {
+    "id": "REF_AAO_SINUS",
+    "title": "Clinical Practice Guideline: Adult Sinusitis",
+    "organization": "American Academy of Otolaryngology–Head and Neck Surgery (AAO-HNS)",
+    "year": 2020,
+    "description": "Diagnostic criteria for acute rhinosinusitis: purulent nasal drainage accompanied by nasal obstruction, facial pain-pressure-fullness, or both.",
+    "url": "https://www.entnet.org/quality-practice/clinical-practice-guidelines/adult-sinusitis/"
+  },
+  "REF_CHEST_BRONCHITIS": {
+    "id": "REF_CHEST_BRONCHITIS",
+    "title": "CHEST Guideline: Management of Cough and Acute Bronchitis",
+    "organization": "American College of Chest Physicians (CHEST)",
+    "year": 2020,
+    "description": "Clinical diagnosis of acute bronchitis characterized by acute cough with or without sputum production in the absence of pneumonia consolidation.",
+    "url": "https://journal.chestnet.org/"
+  },
+  "REF_GINA_ASTHMA": {
+    "id": "REF_GINA_ASTHMA",
+    "title": "Global Strategy for Asthma Management and Prevention",
+    "organization": "Global Initiative for Asthma (GINA)",
+    "year": 2023,
+    "description": "Symptom patterns characteristic of acute bronchospasm / asthma: wheezing, shortness of breath, chest tightness, and cough that vary over time and in intensity.",
+    "url": "https://ginasthma.org/"
+  },
+  "REF_IHS_TENSION": {
+    "id": "REF_IHS_TENSION",
+    "title": "International Classification of Headache Disorders: Tension-Type Headache",
+    "organization": "International Headache Society (IHS)",
+    "year": 2018,
+    "description": "Diagnostic criteria for tension-type headache: bilateral, pressing/tightening non-pulsating head pain of mild-to-moderate intensity, without nausea and with no more than one of photophobia or phonophobia.",
+    "url": "https://ichd-3.org/2-tension-type-headache/"
+  },
+  "REF_ACG_GERD": {
+    "id": "REF_ACG_GERD",
+    "title": "Guidelines for the Diagnosis and Management of Gastroesophageal Reflux Disease",
+    "organization": "American College of Gastroenterology (ACG)",
+    "year": 2022,
+    "description": "Hallmark clinical symptoms of GERD: heartburn (pyrosis) and acid regurgitation, frequently aggravated in the supine position or following meals.",
+    "url": "https://gi.org/guidelines/"
+  },
+  "REF_AAP_AOM": {
+    "id": "REF_AAP_AOM",
+    "title": "The Diagnosis and Management of Acute Otitis Media",
+    "organization": "American Academy of Pediatrics (AAP)",
+    "year": 2019,
+    "description": "Clinical criteria for acute otitis media: rapid onset of ear pain (otalgia), ear fullness, and middle ear inflammation following upper respiratory infection.",
+    "url": "https://publications.aap.org/pediatrics"
+  },
+  "REF_AAO_CONJUNCTIVITIS": {
+    "id": "REF_AAO_CONJUNCTIVITIS",
+    "title": "Conjunctivitis Preferred Practice Pattern",
+    "organization": "American Academy of Ophthalmology (AAO)",
+    "year": 2020,
+    "description": "Clinical features of acute allergic conjunctivitis: bilateral ocular itching, hyperemia (redness), watery discharge, and chemosis associated with environmental allergen exposure.",
+    "url": "https://www.aao.org/preferred-practice-pattern/conjunctivitis-ppp"
+  },
+  "REF_IDSA_DIARRHEA": {
+    "id": "REF_IDSA_DIARRHEA",
+    "title": "Clinical Practice Guidelines for the Diagnosis and Management of Infectious Diarrhea",
+    "organization": "Infectious Diseases Society of America (IDSA)",
+    "year": 2017,
+    "description": "Clinical identification of inflammatory/invasive bacterial diarrhea: fever, bloody stools (dysentery), severe abdominal cramps, and fecal urgency.",
+    "url": "https://www.idsociety.org/practice-guideline/infectious-diarrhea/"
   }
 }

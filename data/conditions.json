@@ -12,8 +12,8 @@
       "Abrupt symptom onset"
     ],
     "differential_considerations": [
+      "COVID-19 Respiratory Infection",
       "Common Cold (usually lacks high fever and severe myalgias)",
-      "COVID-19",
       "Acute Bronchitis",
       "Bacterial Pneumonia"
     ],
@@ -33,7 +33,8 @@
     "differential_considerations": [
       "Influenza (more severe systemic symptoms)",
       "Allergic Rhinitis (pruritus predominant, non-infectious)",
-      "Streptococcal Pharyngitis (severe sore throat, exudates, high fever)"
+      "Acute Streptococcal Pharyngitis (severe sore throat, exudates, high fever)",
+      "Acute Rhinosinusitis"
     ],
     "primary_reference": "REF_CDC_COLD"
   },
@@ -69,7 +70,7 @@
       "Aggravated by routine physical activity"
     ],
     "differential_considerations": [
-      "Tension-Type Headache (bilateral, pressing/tight, non-throbbing)",
+      "Tension-Type Headache (bilateral, pressing/tight band-like, non-throbbing)",
       "Cluster Headache",
       "Secondary Headache (sinusitis, vascular event)"
     ],
@@ -88,7 +89,7 @@
     ],
     "differential_considerations": [
       "Foodborne Intoxication (rapid onset vomiting)",
-      "Inflammatory Bowel Disease Flare",
+      "Acute Invasive / Inflammatory Enteritis (bloody diarrhea)",
       "Appendicitis / Acute Abdomen (severe focal right lower quadrant pain)"
     ],
     "primary_reference": "REF_ACG_GASTRO"
@@ -144,5 +145,192 @@
       "Viral Myocarditis"
     ],
     "primary_reference": "REF_WHO_ILI"
+  },
+  {
+    "id": "covid_19_pattern_supported",
+    "name": "COVID-19 Respiratory Infection Pattern",
+    "category": "Respiratory",
+    "description": "Acute viral respiratory illness characterized by systemic fever, cough, fatigue, and pathognomonic sudden sensory impairment (loss of taste or smell).",
+    "clinical_features": [
+      "Fever >= 38 C",
+      "Cough",
+      "Sudden loss of taste or smell (Anosmia / Ageusia)",
+      "Fatigue and body aches",
+      "Headache"
+    ],
+    "differential_considerations": [
+      "Influenza-Like Illness",
+      "Common Cold",
+      "Bacterial Pneumonia"
+    ],
+    "primary_reference": "REF_CDC_COVID"
+  },
+  {
+    "id": "strep_throat_pattern_supported",
+    "name": "Acute Streptococcal Pharyngitis (Strep Throat) Pattern",
+    "category": "Otolaryngology & Throat",
+    "description": "Acute bacterial infection of the pharynx caused by Streptococcus pyogenes, marked by sudden severe sore throat, tonsillar exudates, cervical lymphadenopathy, and absence of cough (Centor criteria).",
+    "clinical_features": [
+      "Severe sore throat with painful swallowing",
+      "Tonsillar exudates / white patches",
+      "Tender anterior cervical lymphadenopathy",
+      "Fever",
+      "Absence of prominent cough"
+    ],
+    "differential_considerations": [
+      "Viral Pharyngitis (Common Cold / Adenovirus)",
+      "Infectious Mononucleosis (EBV)",
+      "Peritonsillar Abscess"
+    ],
+    "primary_reference": "REF_IDSA_STREP"
+  },
+  {
+    "id": "acute_sinusitis_pattern_supported",
+    "name": "Acute Rhinosinusitis (Sinus Infection) Pattern",
+    "category": "Otolaryngology & Nose",
+    "description": "Inflammation of the paranasal sinuses presenting with facial pressure or pain over the cheeks/forehead, purulent nasal discharge, and severe nasal obstruction.",
+    "clinical_features": [
+      "Facial pain or pressure (maxillary/frontal)",
+      "Purulent (cloudy/colored) nasal discharge",
+      "Nasal congestion",
+      "Headache or dental pain",
+      "Fatigue"
+    ],
+    "differential_considerations": [
+      "Uncomplicated Viral Rhinitis (Common Cold)",
+      "Allergic Rhinosinusitis",
+      "Dental Abscess"
+    ],
+    "primary_reference": "REF_AAO_SINUS"
+  },
+  {
+    "id": "acute_bronchitis_pattern_supported",
+    "name": "Acute Bronchitis (Lower Airway Inflammation) Pattern",
+    "category": "Respiratory",
+    "description": "Self-limiting inflammation of the large airways following an upper respiratory infection, dominated by persistent cough with sputum production.",
+    "clinical_features": [
+      "Persistent cough (> 5 days)",
+      "Sputum / phlegm production",
+      "Chest burning or discomfort with coughing",
+      "Mild fatigue or low-grade fever"
+    ],
+    "differential_considerations": [
+      "Community-Acquired Pneumonia",
+      "Asthma Exacerbation",
+      "Post-Nasal Drip Syndrome"
+    ],
+    "primary_reference": "REF_CHEST_BRONCHITIS"
+  },
+  {
+    "id": "asthma_bronchospasm_pattern_supported",
+    "name": "Acute Bronchospasm / Asthma Exacerbation Pattern",
+    "category": "Pulmonology",
+    "description": "Reversible lower airway obstruction manifested by expiratory wheezing, chest tightness, shortness of breath, and cough.",
+    "clinical_features": [
+      "Expiratory wheezing (musical whistling breath)",
+      "Dyspnea / shortness of breath",
+      "Chest tightness",
+      "Irritative cough",
+      "Allergen or viral trigger"
+    ],
+    "differential_considerations": [
+      "Anaphylaxis (multi-organ involvement)",
+      "Acute Bronchitis",
+      "Foreign Body Aspiration"
+    ],
+    "primary_reference": "REF_GINA_ASTHMA"
+  },
+  {
+    "id": "tension_type_headache_pattern_supported",
+    "name": "Tension-Type Headache Pattern",
+    "category": "Neurology",
+    "description": "The most prevalent primary headache disorder, presenting as a bilateral, non-pulsating, pressing or tight band-like headache associated with neck muscle tenderness.",
+    "clinical_features": [
+      "Bilateral head pain",
+      "Pressing or tightening (band-like) quality",
+      "Mild to moderate intensity",
+      "Neck and shoulder muscle tenderness",
+      "Absence of nausea/vomiting"
+    ],
+    "differential_considerations": [
+      "Migraine without aura",
+      "Cervicogenic Headache",
+      "Sinus Headache"
+    ],
+    "primary_reference": "REF_IHS_TENSION"
+  },
+  {
+    "id": "gerd_reflux_pattern_supported",
+    "name": "Gastroesophageal Reflux Disease (GERD) Pattern",
+    "category": "Gastroenterology",
+    "description": "Retrograde movement of gastric contents into the esophagus causing retrosternal burning pain (heartburn) and acid regurgitation, classically exacerbated postprandially and when supine.",
+    "clinical_features": [
+      "Retrosternal burning chest pain (heartburn)",
+      "Acid regurgitation / sour taste in mouth",
+      "Worsened by lying down or bending over",
+      "Exacerbated after meals",
+      "Absence of cardiac exertional red flags"
+    ],
+    "differential_considerations": [
+      "Cardiac Chest Pain (Angina / ACS - MUST BE RULED OUT)",
+      "Esophageal Spasm",
+      "Peptic Ulcer Disease"
+    ],
+    "primary_reference": "REF_ACG_GERD"
+  },
+  {
+    "id": "acute_otitis_media_pattern_supported",
+    "name": "Acute Otitis Media (Middle Ear Infection) Pattern",
+    "category": "Otolaryngology & Ear",
+    "description": "Rapid onset of infection and inflammation within the middle ear space, usually occurring as a secondary complication of viral upper respiratory tract congestion.",
+    "clinical_features": [
+      "Earache / otalgia (sharp or throbbing)",
+      "Sensation of ear fullness or diminished hearing",
+      "Fever",
+      "Preceding or concurrent nasal congestion"
+    ],
+    "differential_considerations": [
+      "Otitis Externa (Swimmer's Ear)",
+      "Eustachian Tube Dysfunction",
+      "Temporomandibular Joint (TMJ) Dysfunction"
+    ],
+    "primary_reference": "REF_AAP_AOM"
+  },
+  {
+    "id": "allergic_conjunctivitis_pattern_supported",
+    "name": "Acute Allergic Conjunctivitis Pattern",
+    "category": "Ophthalmology & Allergy",
+    "description": "Bilateral allergic inflammation of the ocular conjunctiva characterized by prominent itching, conjunctival redness, and tearing without purulent discharge.",
+    "clinical_features": [
+      "Intense bilateral ocular pruritus (itching)",
+      "Conjunctival redness / injection",
+      "Watery eye discharge",
+      "Eyelid swelling",
+      "Concurrent sneezing or allergic rhinitis"
+    ],
+    "differential_considerations": [
+      "Bacterial Conjunctivitis (purulent matter)",
+      "Viral Keratoconjunctivitis",
+      "Dry Eye Syndrome"
+    ],
+    "primary_reference": "REF_AAO_CONJUNCTIVITIS"
+  },
+  {
+    "id": "acute_invasive_enteritis_pattern_supported",
+    "name": "Acute Invasive / Inflammatory Enteritis (Dysentery) Pattern",
+    "category": "Gastroenterology",
+    "description": "Bacterial or amoebic invasion of the intestinal mucosa causing inflammatory diarrhea characterized by visible blood in stool, severe cramps, and high fever.",
+    "clinical_features": [
+      "Bloody diarrhea (dysentery)",
+      "High fever and chills",
+      "Severe colicky lower abdominal cramping",
+      "Tenesmus (painful straining)"
+    ],
+    "differential_considerations": [
+      "Inflammatory Bowel Disease Flare",
+      "Ischemic Colitis",
+      "Non-invasive Viral Gastroenteritis"
+    ],
+    "primary_reference": "REF_IDSA_DIARRHEA"
   }
 ]
